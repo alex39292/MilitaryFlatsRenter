@@ -4,7 +4,8 @@
   "description": "Telegram bot for mil.by",
   "main": "run.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "parser": "node services/parser.js"
   },
   "keywords": [
     "telegram"
