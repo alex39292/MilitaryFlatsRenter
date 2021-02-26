@@ -1,0 +1,20 @@
+{
+  "name": "bot_js",
+  "version": "1.0.0",
+  "description": "Telegram bot for mil.by",
+  "main": "run.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "telegram"
+  ],
+  "author": "Aliaksandr Danilin",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5",
+    "pg": "^8.5.1",
+    "telegraf": "^4.1.1"
+  }
+}
