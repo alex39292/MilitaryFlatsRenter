@@ -3,15 +3,11 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const parser = require('../configs/parser.json');
-const log4js_config = require('../configs/log4js.json')
-const logger = require('log4js')
-    .configure(log4js_config)
-    .getLogger('parser');
-const homes = [];
+const { log4js } = require('../utils/log4js');
+const logger = log4js.getLogger('parser')
 
-getData();
-
-async function getData() {
+module.exports.getData = async () => {
+    const homes = [];
     const response = await getDOM();
     const $ = cheerio.load(response.data);
     const id = getElementsBy(parser.selectors.id);
@@ -21,7 +17,7 @@ async function getData() {
     const flats = getElementsBy(parser.selectors.flats);
     const area = getElementsBy(parser.selectors.area);
     const deadLine = getElementsBy(parser.selectors.deadLine);
-    const other = getElementsBy(parser.selectors.other);
+    const notes = getElementsBy(parser.selectors.other);
     
     while (id.length !== 0) {
         const home = {};
@@ -31,13 +27,15 @@ async function getData() {
         home.flats = flats.shift();
         home.area = area.shift();
         home.deadLine = deadLine.shift();
-        home.other = other.shift();
+        home.notes = notes.shift();
         homes.push(home);
     }
 
     function getElementsBy(selector) {
         return $(selector).toArray().map(elem => $(elem).text().trim());
     }
+
+    return homes;
 }
 
 async function getDOM() {
