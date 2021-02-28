@@ -6,7 +6,7 @@ const { getData } = require('../services/parser');
 const { client, turnConnection } = require('../services/postgres');
 
 //updateAndGetHomes();
-findHome('лидА');
+//findHome('лидА');
 
 
 async function updateAndGetHomes() {
@@ -49,4 +49,5 @@ async function findHome(address) {
     const result = homes.filter(home => home.address.toUpperCase().includes(address.toUpperCase()));
     logger.info(result);
     turnConnection({action: 'off'});
+    return result;
 }
