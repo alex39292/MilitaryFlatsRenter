@@ -1,8 +1,5 @@
-[2021-02-28T18:38:23.155] [INFO] postgres - Connected to DataBase
-[2021-02-28T18:38:23.538] [INFO] parser - Get response from https://www.mil.by/ru/housing/commerc/
-[2021-02-28T18:38:23.923] [INFO] parser - Get 9 homes from response
-[2021-02-28T18:38:23.983] [INFO] homes - Homes were updated. Added 9 rows
-[2021-02-28T18:38:24.625] [INFO] homes - [
+[2021-02-28T19:10:36.493] [INFO] postgres - Connected to DataBase
+[2021-02-28T19:10:36.499] [INFO] homes - [
   {
     id: 1,
     address: 'г.Лида,\n\t\t\t\t ул.Тухачевского, д.101, кв.40',
@@ -98,4 +95,26 @@
       '\t\t\t\t в порядке очередности'
   }
 ]
-[2021-02-28T18:38:24.632] [INFO] postgres - Connection closed
+[2021-02-28T19:10:36.502] [INFO] homes - [
+  {
+    id: 1,
+    address: 'г.Лида,\n\t\t\t\t ул.Тухачевского, д.101, кв.40',
+    floor: '1',
+    flats: '2',
+    area: '62,3',
+    deadline: 'по 27.02.2021',
+    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Лида,\n' +
+      '\t\t\t\t в порядке очередности'
+  },
+  {
+    id: 9,
+    address: 'г.Лида,\n\t\t\t\t ул.Тухачевского, д.101, кв.63',
+    floor: '7',
+    flats: '1',
+    area: '40,7',
+    deadline: 'по 13.03.2021',
+    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Лида,\n' +
+      '\t\t\t\t в порядке очередности'
+  }
+]
+[2021-02-28T19:10:36.508] [INFO] postgres - Connection closed

@@ -5,9 +5,11 @@ const logger = log4js.getLogger('homes');
 const { getData } = require('../services/parser');
 const { client, turnConnection } = require('../services/postgres');
 
-updateAndGet();
+//updateAndGetHomes();
+findHome('лидА');
 
-async function updateAndGet() {
+
+async function updateAndGetHomes() {
     try {
     await turnConnection({action: 'on'});
     await updateHomes();
@@ -35,7 +37,16 @@ async function updateHomes() {
 }
 
 async function getHomes() {
-    const homes = await client.query('select * from homes');
-    logger.info(homes.rows);
-    return homes.rows;
+    const homes = await (await client.query('select * from homes')).rows;
+    logger.info(homes);
+    return homes;
+}
+
+async function findHome(address) {
+    const field = `.${address}`;
+    turnConnection({action: 'on'});
+    const homes = await getHomes();
+    const result = homes.filter(home => home.address.toUpperCase().includes(address.toUpperCase()));
+    logger.info(result);
+    turnConnection({action: 'off'});
 }

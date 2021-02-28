@@ -10,7 +10,7 @@ module.exports.client = client;
 
 module.exports.turnConnection = async ({action}) => {
     try {
-        if (button === 'on') {
+        if (action === 'on') {
             await client.connect();
             logger.info('Connected to DataBase');
         } else {
