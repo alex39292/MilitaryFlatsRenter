@@ -7,7 +7,7 @@
     "test": "test",
     "prestart": "node utils/clean_up.js",
     "parser": "npm run prestart && node services/parser.js",
-    "postgres": "npm run prestart && node models/users.js"
+    "postgres": "npm run prestart && node models/homes.js"
   },
   "keywords": [
     "telegram"

@@ -7,22 +7,28 @@ const { client, turnConnection } = require('../services/postgres');
 
 //updateAndGetHomes();
 //findHome('лидА');
-
-
-async function updateAndGetHomes() {
+startLoop();
+async function startLoop() {
     try {
-    await turnConnection({action: 'on'});
-    await updateHomes();
-    await getHomes();
+        await turnConnection(true);
+            
+        await setInterval(async () => {
+            logger.info('Running loop...');
+            const currentHomes = await getData();
+            const homes = await getHomes();
+            if (homes.join('') !== currentHomes.join('')) {
+                await setHomes(currentHomes, false);
+            } else {
+                logger.info('Data is the same');
+            }
+        }, 60000);
     } catch (error) {
         logger.error(error);
-    } finally {
-        await turnConnection({action: 'off'});
+        await turnConnection(false);
     }
 }
 
-async function updateHomes() {
-    const homes = await getData();
+async function setHomes(homes, flag) {
     const length = homes.length;
     client.query('truncate homes');
     while (homes.length != 0) {
@@ -33,12 +39,15 @@ async function updateHomes() {
         }
         client.query(query);
     }
-    logger.info(`Homes were updated. Added ${length} rows`);
+    if (flag) {
+        logger.info(`Homes were setted. Added ${length} rows`);
+    } else {
+        logger.info(`Homes were updated. Added ${length} rows`);
+    }
 }
 
 async function getHomes() {
     const homes = await (await client.query('select * from homes')).rows;
-    logger.info(homes);
     return homes;
 }
 

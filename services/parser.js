@@ -11,7 +11,7 @@ module.exports.getData = async () => {
     const response = await getDOM();
     const $ = cheerio.load(response.data);
     const id = getElementsBy(parser.selectors.id);
-    logger.info(`Get ${id.length} homes from response`);
+    logger.info(`Got ${id.length} homes from response`);
     const address = getElementsBy(parser.selectors.address);
     const floor = getElementsBy(parser.selectors.floor);
     const flats = getElementsBy(parser.selectors.flats);
@@ -41,7 +41,7 @@ module.exports.getData = async () => {
 async function getDOM() {
     try {
         const response = await axios.get(parser.url);
-        logger.info(`Get response from ${parser.url}`)
+        logger.info(`Got response from ${parser.url}`)
         return response
     } catch (error) {
         logger.error(error);

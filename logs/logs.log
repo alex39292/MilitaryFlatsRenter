@@ -1,2 +1,9 @@
-[2021-02-28T19:56:21.444] [INFO] users - User with id: 1693 was created
-[2021-02-28T19:56:21.447] [INFO] postgres - Connection closed
+[2021-03-02T02:32:03.964] [INFO] postgres - Connected to DataBase
+[2021-03-02T02:33:03.968] [INFO] homes - Running loop...
+[2021-03-02T02:33:04.286] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
+[2021-03-02T02:33:04.673] [INFO] parser - Got 9 homes from response
+[2021-03-02T02:33:04.718] [INFO] homes - Data is the same
+[2021-03-02T02:34:03.973] [INFO] homes - Running loop...
+[2021-03-02T02:34:04.308] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
+[2021-03-02T02:34:04.606] [INFO] parser - Got 9 homes from response
+[2021-03-02T02:34:04.623] [INFO] homes - Data is the same
