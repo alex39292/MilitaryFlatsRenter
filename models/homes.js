@@ -5,10 +5,7 @@ const logger = log4js.getLogger('homes');
 const { getData } = require('../services/parser');
 const { client, turnConnection } = require('../services/postgres');
 
-//updateAndGetHomes();
-//findHome('лидА');
-startLoop();
-async function startLoop() {
+module.exports.startLoop = async () => {
     try {
         await turnConnection(true);
             
@@ -17,7 +14,7 @@ async function startLoop() {
             const currentHomes = await getData();
             const homes = await getHomes();
             if (homes.join('') !== currentHomes.join('')) {
-                await setHomes(currentHomes, false);
+                await setHomes(currentHomes);
             } else {
                 logger.info('Data is the same');
             }
@@ -28,35 +25,44 @@ async function startLoop() {
     }
 }
 
-async function setHomes(homes, flag) {
-    const length = homes.length;
-    client.query('truncate homes');
-    while (homes.length != 0) {
-        const home = homes.shift();
-        const query = {
-            text: "insert into homes(id, address, floor, flats, area, deadline, notes) values($1, $2, $3, $4, $5, $6, $7)",
-            values: [home.id, home.address, home.floor, home.flats, home.area, home.deadLine, home.notes]
-        }
+async function setHomes(homes) {
+    try {
+        const length = homes.length;
+        client.query('truncate homes');
+        while (homes.length != 0) {
+            const home = homes.shift();
+            const query = {
+                text: "insert into homes(id, address, floor, flats, area, deadline, notes) values($1, $2, $3, $4, $5, $6, $7)",
+                values: [home.id, home.address, home.floor, home.flats, home.area, home.deadLine, home.notes]
+            }
         client.query(query);
-    }
-    if (flag) {
-        logger.info(`Homes were setted. Added ${length} rows`);
-    } else {
+        }
         logger.info(`Homes were updated. Added ${length} rows`);
+    } catch (error) {
+        logger.error(error);
+        turnConnection(false);
     }
 }
 
 async function getHomes() {
-    const homes = await (await client.query('select * from homes')).rows;
-    return homes;
+    try {
+        const homes = await (await client.query('select * from homes')).rows;
+        return homes;
+    } catch (error) {
+        logger.error(error);
+        turnConnection(false);
+    }
 }
 
-async function findHome(address) {
-    const field = `.${address}`;
-    turnConnection({action: 'on'});
-    const homes = await getHomes();
-    const result = homes.filter(home => home.address.toUpperCase().includes(address.toUpperCase()));
-    logger.info(result);
-    turnConnection({action: 'off'});
-    return result;
+module.exports.findHome = async address => {
+    try {
+        const field = `.${address}`;
+        const homes = await getHomes();
+        const result = homes.filter(home => home.address.toUpperCase().includes(field.toUpperCase()));
+        logger.info(result);
+        return result;
+    } catch (error) {
+        logger.error(error);
+        turnConnection(false);
+    }
 }
