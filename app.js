@@ -5,7 +5,7 @@ const { log4js } = require('./utils/log4js');
 const logger = log4js.getLogger('bot');
 const { startLoop, findHome } = require('./models/homes');
 const { getUsers, getUserById, createUser, changeState, insertCity } = require('./models/users');
-const { generateSticker } = require('./models/stickers');
+const { generateNumberToSticker, generateDate, generateZap } = require('./models/stickers');
 const { Telegraf, Markup } = require('telegraf');
 const bot = new Telegraf(yargs.token);
 
@@ -31,16 +31,16 @@ bot.on('message', async ctx => {
         let count = 0;
         let replyMsg = '';
         result.forEach(home => {
-        replyMsg += `${generateSticker(++count)}. ${home.address.trim()}
-        Комнат: ${home.flats}
-        Этаж: ${home.floor}
-        Площадь: ${home.area}
-        Дата: ${home.deadline}
-        Примечание: ${home.notes}
+replyMsg += `${generateNumberToSticker(++count)}. ${home.address.trim()}
+Комнат: ${home.flats}
+Этаж: ${home.floor}
+Площадь: ${home.area}
+${generateDate()} ${home.deadline}
+${generateZap()} ${home.notes}
         
-        `;
+`;
     });
-    ctx.reply(replyMsg);
+    await ctx.reply(replyMsg);
     }
 });
 
