@@ -18,7 +18,7 @@ module.exports.startLoop = async () => {
             } else {
                 logger.info('Data is the same');
             }
-        }, 60000);
+        }, 600000);
     } catch (error) {
         logger.error(error);
         await turnConnection(false);

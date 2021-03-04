@@ -1,10 +1,1 @@
-[2021-03-04T00:32:21.058] [INFO] postgres - Connected to DataBase
-[2021-03-04T00:32:21.139] [INFO] users - [
-  { id: 168305743, state: 'RUN', user_name: null, city: 'Минск' },
-  { id: 2131414, state: 'START', user_name: 'alex', city: null },
-  { id: 169, state: 'START', user_name: 'shell', city: null }
-]
-[2021-03-04T00:33:21.064] [INFO] homes - Running loop...
-[2021-03-04T00:33:21.357] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
-[2021-03-04T00:33:21.792] [INFO] parser - Got 14 homes from response
-[2021-03-04T00:33:21.857] [INFO] homes - Data is the same
+[2021-03-05T02:06:47.993] [INFO] postgres - Connected to DataBase
