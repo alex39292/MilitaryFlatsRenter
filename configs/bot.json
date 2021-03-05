@@ -1,0 +1,6 @@
+{
+    "webhook": {
+        "domain": "https://91bdbda113e3.ngrok.io",
+        "port": 5000
+    }
+}
