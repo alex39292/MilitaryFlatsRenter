@@ -27,8 +27,8 @@ bot.start(async ctx => {
 bot.on('message', async ctx => {
     const user = ctx.message.from;
     const city = ctx.message.text;
-    if (!isNaN(city)) {
-        return ctx.reply(`Не верно введен город`);
+    if (!/[^\.~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?a-zA-Z0-9]/.test(city)) {
+        return ctx.reply(`Не верно введен город. Пример: Минск`);
     }
     logger.info(`User [${user.id}] added city name ${city}`);
     await changeState(user.id, 'RUN');
