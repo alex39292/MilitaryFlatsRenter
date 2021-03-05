@@ -19,7 +19,7 @@ module.exports.getUserById = async id => {
     try {
         const user = await (await client.query(`select * from users where id = ${id}`)).rows;
         logger.info(user);
-        return user;
+        return user.pop();
     } catch(error) {
         logger.error(error);
         turnConnection(false);

@@ -64,7 +64,7 @@ ${emoji.generateZap()} ${home.notes}
 bot.action('Follow', async (ctx, next) => {
     const id = ctx.update.callback_query.from.id;
     await changeState(id, 'FOLLOWED');
-    const user = await (await getUserById(id)).pop();
+    const user = await getUserById(id);
     logger.info(`User [${id}] followed on updates. Searching city is ${user.city}]`);
     return ctx.reply('👍').then(() => next());
 });
