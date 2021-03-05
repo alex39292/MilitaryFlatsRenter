@@ -7,7 +7,7 @@ const { startLoop, findHome } = require('./models/homes');
 const { getUsers, getUserById, createUser, changeState, insertCity } = require('./models/users');
 const Emoji = require('./models/emoji');
 const emoji = new Emoji();
-const { Telegraf } = require('telegraf');
+const { Telegraf, Markup } = require('telegraf');
 const configs = require('./configs/bot.json');
 const bot = new Telegraf(yargs.token);
 
@@ -35,7 +35,11 @@ bot.on('message', async ctx => {
     await insertCity(user.id, city);
     const result = await findHome(city);
     if (result.length === 0) {
-        return ctx.reply(`Нет квартир в г.${city}`);
+        await ctx.reply(`Нет квартир в г.${city}`);
+        return ctx.reply('Подписаться на обновление?',
+            Markup.inlineKeyboard([
+                Markup.button.callback('Подписаться', 'Follow')
+        ]));
     } else {
         let count = 0;
         let replyMsg = '';
@@ -49,8 +53,20 @@ ${emoji.generateZap()} ${home.notes}
         
 `;
     });
-    return ctx.reply(replyMsg);
+    await ctx.reply(replyMsg);
+    return ctx.reply('Подписаться на обновление?',
+        Markup.inlineKeyboard([
+            Markup.button.callback('Подписаться', 'Follow')
+        ]));
     }
+});
+
+bot.action('Follow', async (ctx, next) => {
+    const id = ctx.update.callback_query.from.id;
+    await changeState(id, 'FOLLOWED');
+    const user = await (await getUserById(id)).pop();
+    logger.info(`User [${id}] followed on updates. Searching city is ${user.city}]`);
+    return ctx.reply('👍').then(() => next());
 });
 
 bot.launch(configs);
