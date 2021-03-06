@@ -62,7 +62,7 @@ module.exports.findHome = async address => {
         const field = `.${address}`;
         const homes = await getHomes();
         const result = homes.filter(home => home.address.toUpperCase().includes(field.toUpperCase()));
-        logger.info(result);
+        logger.info(`${result.length} homes were found.`);
         return makeMessage(result);
     } catch (error) {
         logger.error(error);

@@ -32,13 +32,7 @@ bot.on('message', async ctx => {
     }
     logger.info(`User [${user.id}] added city name ${city}`);
     await changeState(user.id, 'RUN');
-    observer.unsubscribe(async () => {
-        const message = await findHome(user.city);
-        if (message !== '') {
-            logger.info(`BROADCAST is working for ${user.id}`);
-            await ctx.telegram.sendMessage(user.id, message);
-        }
-    });
+    observer.unsubscribe(user.id);
     await insertCity(user.id, city);
     const message = await findHome(city);
     if (message === '') {
@@ -60,12 +54,10 @@ bot.action('Subscribe', async (ctx, next) => {
     const id = ctx.update.callback_query.from.id;
     const user = await getUserById(id);
     await changeState(id, 'SUBSCRIBED');
-    observer.subscribe(async () => {
-        const message = await findHome(user.city);
-        if (message !== '') {
-            logger.info(`BROADCAST is working for ${user.id}`);
-            await ctx.telegram.sendMessage(user.id, message);
-        }
+    observer.subscribe({
+        user: user,
+        ctx: ctx,
+        func: broadcast
     });
     await ctx.reply('Вы успешно подписались').then(() => next());
     return ctx.reply('Можно искать в других городах...',
@@ -77,15 +69,17 @@ bot.action('Subscribe', async (ctx, next) => {
 bot.action('Unsubscribe', async (ctx, next) => {
     const id = ctx.update.callback_query.from.id;
     const user = await getUserById(id);
-    observer.unsubscribe(async () => {
-        const message = await findHome(user.city);
-        if (message !== '') {
-            logger.info(`BROADCAST is working for ${user.id}`);
-            await ctx.telegram.sendMessage(user.id, message);
-        }
-    });
+    observer.unsubscribe(user.id);
     await changeState(id, 'RUN');
     await ctx.reply('Вы отписались').then(() => next());
 })
 
 bot.launch(configs);
+
+async function broadcast(user, ctx) {
+    const message = await findHome(user.city);
+        if (message !== '') {
+            logger.info(`BROADCAST is working for ${user.id}`);
+            await ctx.telegram.sendMessage(user.id, message);
+        }
+}

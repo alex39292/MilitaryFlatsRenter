@@ -18,7 +18,7 @@ module.exports.getUsers = async () => {
 module.exports.getUserById = async id => {
     try {
         const user = await (await client.query(`select * from users where id = ${id}`)).rows;
-        logger.info(user);
+        logger.info(`getUserByid(${id}) : true`);
         return user.pop();
     } catch(error) {
         logger.error(error);

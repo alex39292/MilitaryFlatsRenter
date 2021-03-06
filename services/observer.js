@@ -4,22 +4,22 @@ const { log4js } = require('../utils/log4js');
 const logger = log4js.getLogger('observer');
 
 class EventObserver {
-    constructor () {
+    constructor() {
         this.observers = [];
     }
   
-    subscribe (fn) {
-        logger.info(fn);
-        this.observers.push(fn);
+    subscribe(object) {
+        logger.info(object);
+        this.observers.push(object);
     }
   
-    unsubscribe (fn) {
-        this.observers = this.observers.filter(subscriber => subscriber === fn);
+    unsubscribe(id) {
+        this.observers = this.observers.filter(subscriber => subscriber.user.id !== id);
         logger.info(this.observers.length);
     }
   
-    broadcast () {
-        this.observers.forEach(subscriber => subscriber());
+    broadcast() {
+        this.observers.forEach(subscriber => subscriber.func(subscriber.user, subscriber.ctx));
     }
   }
 
