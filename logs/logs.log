@@ -1,10 +1,11 @@
-[2021-03-06T00:35:32.547] [INFO] postgres - Connected to DataBase
-[2021-03-06T00:35:38.591] [INFO] bot - User [168305743] added city name Минск
-[2021-03-06T00:35:38.593] [INFO] users - State for user 168305743 was updated to RUN
-[2021-03-06T00:35:38.593] [INFO] users - City for user 168305743 was updated to Минск
-[2021-03-06T00:35:38.628] [INFO] homes - [
+[2021-03-06T03:30:43.786] [INFO] postgres - Connected to DataBase
+[2021-03-06T03:30:59.347] [INFO] bot - User [168305743] added city name Минск
+[2021-03-06T03:30:59.349] [INFO] users - State for user 168305743 was updated to RUN
+[2021-03-06T03:30:59.350] [INFO] observer - 0
+[2021-03-06T03:30:59.350] [INFO] users - City for user 168305743 was updated to Минск
+[2021-03-06T03:30:59.381] [INFO] homes - [
   {
-    id: 14,
+    id: 11,
     address: 'г.Минск,\n\t\t\t\t ул.Павловского, д.50Б, кв.71',
     floor: '3',
     flats: '1',
@@ -15,57 +16,89 @@
       '\t\t\t\t при отсутствии желающих – для военнослужащих\n' +
       '\t\t\t\t в порядке очередности\n' +
       ' по 2014 г.'
+  },
+  {
+    id: 16,
+    address: 'г.Минск,\n\t\t\t\t ул.Основателей, д.13, кв.56',
+    floor: '10',
+    flats: '1',
+    area: '37,4',
+    deadline: '20.03.2021',
+    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Минске,\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2012 г.'
+  },
+  {
+    id: 17,
+    address: 'г.Минск,\n\t\t\t\t ул.Основателей, д.13, кв.36',
+    floor: '6',
+    flats: '1',
+    area: '34,4',
+    deadline: '20.03.2021',
+    notes: 'первоочередное право по п.12\n' +
+      '\t\t\t\t для военнослужащих, состоящих на учете нуждающихся в г.Минске,\n' +
+      '\t\t\t\t в порядке очередности'
   }
 ]
-[2021-03-06T00:35:40.321] [INFO] users - State for user 168305743 was updated to FOLLOWED
-[2021-03-06T00:35:40.323] [INFO] users - [
+[2021-03-06T03:31:02.213] [INFO] users - [
   {
     id: 168305743,
-    state: 'FOLLOWED',
+    state: 'RUN',
     user_name: 'undefined',
     city: 'Минск'
   }
 ]
-[2021-03-06T00:35:40.324] [INFO] bot - User [168305743] followed on updates. Searching city is Минск]
-[2021-03-06T00:36:14.703] [INFO] bot - User [168305743] added city name Барановичи
-[2021-03-06T00:36:14.704] [INFO] users - State for user 168305743 was updated to RUN
-[2021-03-06T00:36:14.704] [INFO] users - City for user 168305743 was updated to Барановичи
-[2021-03-06T00:36:14.715] [INFO] homes - [
+[2021-03-06T03:31:02.214] [INFO] users - State for user 168305743 was updated to SUBSCRIBED
+[2021-03-06T03:31:02.215] [INFO] observer - [AsyncFunction (anonymous)]
+[2021-03-06T03:31:43.791] [INFO] homes - Running loop...
+[2021-03-06T03:31:44.547] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
+[2021-03-06T03:31:44.986] [INFO] parser - Got 18 homes from response
+[2021-03-06T03:31:45.027] [INFO] homes - Homes were updated. Added 18 rows
+[2021-03-06T03:31:45.220] [INFO] homes - [
   {
-    id: 1,
-    address: 'г.Барановичи,\n\t\t\t\t ул.Заслонова, \n\t\t\t\t д.11, кв.4',
-    floor: '1',
-    flats: '2',
-    area: '48,2',
-    deadline: 'по 04.03.2021',
-    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Барановичи,\n' +
+    id: 11,
+    address: 'г.Минск,\n\t\t\t\t ул.Павловского, д.50Б, кв.71',
+    floor: '3',
+    flats: '1',
+    area: '37,5',
+    deadline: 'по 17.03.2021',
+    notes: 'первоочередное право по п.1-11\n' +
+      '\t\t\t\t для военнослужащих, состоящих на учете нуждающихся в г.Минске,\n' +
+      '\t\t\t\t при отсутствии желающих – для военнослужащих\n' +
       '\t\t\t\t в порядке очередности\n' +
-      ' по 2019 г.'
+      ' по 2014 г.'
   },
   {
-    id: 2,
-    address: 'г.Барановичи,\n\t\t\t\t ул.Комарова, \n\t\t\t\t д.17, кв.80',
-    floor: '2',
-    flats: '3',
-    area: '79,7',
-    deadline: 'по 04.03.2021',
-    notes: 'первоочередное право \n' +
-      '\t\t\t\t для военнослужащих, состоящих на учете нуждающихся в г.Барановичи,\n' +
-      '\t\t\t\t в порядке очередности'
+    id: 16,
+    address: 'г.Минск,\n\t\t\t\t ул.Основателей, д.13, кв.56',
+    floor: '10',
+    flats: '1',
+    area: '37,4',
+    deadline: '20.03.2021',
+    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Минске,\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2012 г.'
   },
+  {
+    id: 17,
+    address: 'г.Минск,\n\t\t\t\t ул.Основателей, д.13, кв.36',
+    floor: '6',
+    flats: '1',
+    area: '34,4',
+    deadline: '20.03.2021',
+    notes: 'первоочередное право по п.12\n' +
+      '\t\t\t\t для военнослужащих, состоящих на учете нуждающихся в г.Минске,\n' +
+      '\t\t\t\t в порядке очередности'
+  }
+]
+[2021-03-06T03:31:45.221] [INFO] bot - BROADCAST is working for 168305743
+[2021-03-06T03:32:02.648] [INFO] bot - User [168305743] added city name Барановичи
+[2021-03-06T03:32:02.649] [INFO] users - State for user 168305743 was updated to RUN
+[2021-03-06T03:32:02.649] [INFO] observer - 0
+[2021-03-06T03:32:02.649] [INFO] users - City for user 168305743 was updated to Барановичи
+[2021-03-06T03:32:02.681] [INFO] homes - [
   {
     id: 3,
-    address: 'г.Барановичи,\n\t\t\t\t ул.Федько, \n\t\t\t\t д.5, кв.146',
-    floor: '1',
-    flats: '2',
-    area: '49,7',
-    deadline: 'по 05.03.2021',
-    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Барановичи,\n' +
-      '\t\t\t\t в порядке очередности\n' +
-      ' по 2019 г.'
-  },
-  {
-    id: 6,
     address: 'г.Барановичи,\n\t\t\t\t ул.Комарова, \n\t\t\t\t д.17, кв.89',
     floor: '5',
     flats: '2',
@@ -76,7 +109,7 @@
       ' по 2019 г.'
   },
   {
-    id: 11,
+    id: 8,
     address: 'г.Барановичи,\n\t\t\t\t ул.Заслонова, \n\t\t\t\t д.11, кв.75',
     floor: '1',
     flats: '1',
@@ -89,7 +122,7 @@
       ' по 2019 г.'
   },
   {
-    id: 12,
+    id: 9,
     address: 'г.Барановичи,\n\t\t\t\t ул.Комарова, \n\t\t\t\t д.17, кв.47',
     floor: '3',
     flats: '1',
@@ -100,7 +133,7 @@
       ' по 2019 г.'
   },
   {
-    id: 15,
+    id: 12,
     address: 'г.Барановичи,\n\t\t\t\t ул.Заслонова, \n\t\t\t\t д.11, кв.115',
     floor: '2',
     flats: '1',
@@ -111,13 +144,173 @@
       ' по 2019 г.'
   }
 ]
-[2021-03-06T00:36:17.746] [INFO] users - State for user 168305743 was updated to FOLLOWED
-[2021-03-06T00:36:17.748] [INFO] users - [
+[2021-03-06T03:32:12.688] [INFO] users - [
   {
     id: 168305743,
-    state: 'FOLLOWED',
+    state: 'RUN',
     user_name: 'undefined',
     city: 'Барановичи'
   }
 ]
-[2021-03-06T00:36:17.749] [INFO] bot - User [168305743] followed on updates. Searching city is Барановичи]
+[2021-03-06T03:32:12.688] [INFO] users - State for user 168305743 was updated to SUBSCRIBED
+[2021-03-06T03:32:12.688] [INFO] observer - [AsyncFunction (anonymous)]
+[2021-03-06T03:32:43.791] [INFO] homes - Running loop...
+[2021-03-06T03:32:44.218] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
+[2021-03-06T03:32:44.543] [INFO] parser - Got 18 homes from response
+[2021-03-06T03:32:44.557] [INFO] homes - Homes were updated. Added 18 rows
+[2021-03-06T03:32:44.708] [INFO] homes - [
+  {
+    id: 3,
+    address: 'г.Барановичи,\n\t\t\t\t ул.Комарова, \n\t\t\t\t д.17, кв.89',
+    floor: '5',
+    flats: '2',
+    area: '62,9',
+    deadline: 'по 11.03.2021',
+    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Барановичи,\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2019 г.'
+  },
+  {
+    id: 8,
+    address: 'г.Барановичи,\n\t\t\t\t ул.Заслонова, \n\t\t\t\t д.11, кв.75',
+    floor: '1',
+    flats: '1',
+    area: '34,8',
+    deadline: 'по 17.03.2021',
+    notes: 'первоочередное право\n' +
+      '\t\t\t\t для военнослужащих, состоящих на учете нуждающихся в г.Барановичи,\n' +
+      '\t\t\t\t при отсутствии желающих – для военнослужащих,\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2019 г.'
+  },
+  {
+    id: 9,
+    address: 'г.Барановичи,\n\t\t\t\t ул.Комарова, \n\t\t\t\t д.17, кв.47',
+    floor: '3',
+    flats: '1',
+    area: '42,0',
+    deadline: 'по 17.03.2021',
+    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Барановичи,\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2019 г.'
+  },
+  {
+    id: 12,
+    address: 'г.Барановичи,\n\t\t\t\t ул.Заслонова, \n\t\t\t\t д.11, кв.115',
+    floor: '2',
+    flats: '1',
+    area: '35,5',
+    deadline: 'по 18.03.2021',
+    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Барановичи,\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2019 г.'
+  }
+]
+[2021-03-06T03:32:44.709] [INFO] bot - BROADCAST is working for 168305743
+[2021-03-06T03:32:57.998] [INFO] bot - User [168305743] added city name Минск
+[2021-03-06T03:32:57.998] [INFO] users - State for user 168305743 was updated to RUN
+[2021-03-06T03:32:57.999] [INFO] observer - 0
+[2021-03-06T03:32:57.999] [INFO] users - City for user 168305743 was updated to Минск
+[2021-03-06T03:32:58.028] [INFO] homes - [
+  {
+    id: 11,
+    address: 'г.Минск,\n\t\t\t\t ул.Павловского, д.50Б, кв.71',
+    floor: '3',
+    flats: '1',
+    area: '37,5',
+    deadline: 'по 17.03.2021',
+    notes: 'первоочередное право по п.1-11\n' +
+      '\t\t\t\t для военнослужащих, состоящих на учете нуждающихся в г.Минске,\n' +
+      '\t\t\t\t при отсутствии желающих – для военнослужащих\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2014 г.'
+  },
+  {
+    id: 16,
+    address: 'г.Минск,\n\t\t\t\t ул.Основателей, д.13, кв.56',
+    floor: '10',
+    flats: '1',
+    area: '37,4',
+    deadline: '20.03.2021',
+    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Минске,\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2012 г.'
+  },
+  {
+    id: 17,
+    address: 'г.Минск,\n\t\t\t\t ул.Основателей, д.13, кв.36',
+    floor: '6',
+    flats: '1',
+    area: '34,4',
+    deadline: '20.03.2021',
+    notes: 'первоочередное право по п.12\n' +
+      '\t\t\t\t для военнослужащих, состоящих на учете нуждающихся в г.Минске,\n' +
+      '\t\t\t\t в порядке очередности'
+  }
+]
+[2021-03-06T03:32:59.969] [INFO] users - [
+  {
+    id: 168305743,
+    state: 'RUN',
+    user_name: 'undefined',
+    city: 'Минск'
+  }
+]
+[2021-03-06T03:32:59.969] [INFO] users - State for user 168305743 was updated to SUBSCRIBED
+[2021-03-06T03:32:59.970] [INFO] observer - [AsyncFunction (anonymous)]
+[2021-03-06T03:33:10.902] [INFO] bot - User [168305743] added city name Барановичи
+[2021-03-06T03:33:10.903] [INFO] users - State for user 168305743 was updated to RUN
+[2021-03-06T03:33:10.903] [INFO] observer - 0
+[2021-03-06T03:33:10.903] [INFO] users - City for user 168305743 was updated to Барановичи
+[2021-03-06T03:33:10.917] [INFO] homes - [
+  {
+    id: 3,
+    address: 'г.Барановичи,\n\t\t\t\t ул.Комарова, \n\t\t\t\t д.17, кв.89',
+    floor: '5',
+    flats: '2',
+    area: '62,9',
+    deadline: 'по 11.03.2021',
+    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Барановичи,\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2019 г.'
+  },
+  {
+    id: 8,
+    address: 'г.Барановичи,\n\t\t\t\t ул.Заслонова, \n\t\t\t\t д.11, кв.75',
+    floor: '1',
+    flats: '1',
+    area: '34,8',
+    deadline: 'по 17.03.2021',
+    notes: 'первоочередное право\n' +
+      '\t\t\t\t для военнослужащих, состоящих на учете нуждающихся в г.Барановичи,\n' +
+      '\t\t\t\t при отсутствии желающих – для военнослужащих,\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2019 г.'
+  },
+  {
+    id: 9,
+    address: 'г.Барановичи,\n\t\t\t\t ул.Комарова, \n\t\t\t\t д.17, кв.47',
+    floor: '3',
+    flats: '1',
+    area: '42,0',
+    deadline: 'по 17.03.2021',
+    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Барановичи,\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2019 г.'
+  },
+  {
+    id: 12,
+    address: 'г.Барановичи,\n\t\t\t\t ул.Заслонова, \n\t\t\t\t д.11, кв.115',
+    floor: '2',
+    flats: '1',
+    area: '35,5',
+    deadline: 'по 18.03.2021',
+    notes: 'для военнослужащих, состоящих на учете нуждающихся в г.Барановичи,\n' +
+      '\t\t\t\t в порядке очередности\n' +
+      ' по 2019 г.'
+  }
+]
+[2021-03-06T03:33:43.793] [INFO] homes - Running loop...
+[2021-03-06T03:33:44.054] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
+[2021-03-06T03:33:44.254] [INFO] parser - Got 18 homes from response
+[2021-03-06T03:33:44.277] [INFO] homes - Homes were updated. Added 18 rows

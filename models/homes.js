@@ -4,8 +4,10 @@ const { log4js } = require('../utils/log4js');
 const logger = log4js.getLogger('homes');
 const { getData } = require('../services/parser');
 const { client, turnConnection } = require('../services/postgres');
+const Emoji = require('./emoji');
+const emoji = new Emoji();
 
-module.exports.startLoop = async () => {
+module.exports.startLoop = async observer => {
     try {
         await turnConnection(true);
             
@@ -15,10 +17,11 @@ module.exports.startLoop = async () => {
             const homes = await getHomes();
             if (homes.join('') !== currentHomes.join('')) {
                 await setHomes(currentHomes);
+                observer.broadcast();
             } else {
                 logger.info('Data is the same');
             }
-        }, 600000);
+        }, 60000);
     } catch (error) {
         logger.error(error);
         await turnConnection(false);
@@ -60,9 +63,28 @@ module.exports.findHome = async address => {
         const homes = await getHomes();
         const result = homes.filter(home => home.address.toUpperCase().includes(field.toUpperCase()));
         logger.info(result);
-        return result;
+        return makeMessage(result);
     } catch (error) {
         logger.error(error);
         turnConnection(false);
     }
+}
+
+function makeMessage(result) {
+    let count = 0;
+    let message = '';
+    if (result.length === 0) {
+        return message;
+    }
+    result.forEach(home => {
+message += `${emoji.generateNumberToSticker(++count)}. ${home.address}
+Комнат: ${home.flats}
+Этаж: ${home.floor}
+Площадь: ${home.area}
+${emoji.generateDate()} ${home.deadline}
+${emoji.generateZap()} ${home.notes}
+        
+`;
+});
+    return message;
 }
