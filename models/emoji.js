@@ -36,11 +36,11 @@ class Emoji {
             }
 
         generateDate() {
-                return '🕜';
+                return '⏰';
         }
 
         generateZap() {
-                return '⚡';
+                return '📝';
         }
 }
 

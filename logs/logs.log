@@ -1,69 +1,17 @@
-[2021-03-06T20:02:05.450] [INFO] postgres - Connected to DataBase
-[2021-03-06T20:02:38.459] [INFO] bot - User [168305743] added city name Минск
-[2021-03-06T20:02:38.461] [INFO] users - State for user 168305743 was updated to RUN
-[2021-03-06T20:02:38.461] [INFO] observer - 0
-[2021-03-06T20:02:38.462] [INFO] users - City for user 168305743 was updated to Минск
-[2021-03-06T20:02:38.838] [INFO] homes - 3 homes were found.
-[2021-03-06T20:02:49.744] [INFO] users - getUserByid(168305743) : true
-[2021-03-06T20:02:49.744] [INFO] users - State for user 168305743 was updated to SUBSCRIBED
-[2021-03-06T20:02:49.744] [INFO] observer - {
-  user: {
-    id: 168305743,
-    state: 'RUN',
-    user_name: 'undefined',
-    city: 'Минск'
-  },
-  ctx: Context {
-    update: { update_id: 699038205, callback_query: [Object] },
-    tg: Telegram {
-      token: '1691534515:AAFJR6hh6POubgyzPCesttZ-b9CXpDfYEog',
-      response: [ServerResponse],
-      options: [Object]
-    },
-    botInfo: {
-      id: 1691534515,
-      is_bot: true,
-      first_name: 'test503',
-      username: 'test503Bot',
-      can_join_groups: true,
-      can_read_all_group_messages: false,
-      supports_inline_queries: false
-    },
-    state: {},
-    match: [ 'Subscribe', index: 0, input: 'Subscribe', groups: undefined ]
-  },
-  func: [AsyncFunction: broadcast]
-}
-[2021-03-06T20:03:05.455] [INFO] homes - Running loop...
-[2021-03-06T20:03:05.838] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
-[2021-03-06T20:03:06.326] [INFO] parser - Got 18 homes from response
-[2021-03-06T20:03:06.376] [INFO] homes - Homes were updated. Added 18 rows
-[2021-03-06T20:03:06.533] [INFO] homes - 3 homes were found.
-[2021-03-06T20:03:06.533] [INFO] bot - BROADCAST is working for 168305743
-[2021-03-06T20:03:45.778] [INFO] users - getUserByid(168305743) : true
-[2021-03-06T20:03:45.778] [INFO] observer - 0
-[2021-03-06T20:03:45.779] [INFO] users - State for user 168305743 was updated to RUN
-[2021-03-06T20:04:05.457] [INFO] homes - Running loop...
-[2021-03-06T20:04:05.815] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
-[2021-03-06T20:04:06.139] [INFO] parser - Got 18 homes from response
-[2021-03-06T20:04:06.158] [INFO] homes - Homes were updated. Added 18 rows
-[2021-03-06T20:05:05.457] [INFO] homes - Running loop...
-[2021-03-06T20:05:05.972] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
-[2021-03-06T20:05:06.188] [INFO] parser - Got 18 homes from response
-[2021-03-06T20:05:06.213] [INFO] homes - Data is the same
-[2021-03-06T20:06:05.458] [INFO] homes - Running loop...
-[2021-03-06T20:06:05.788] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
-[2021-03-06T20:06:06.047] [INFO] parser - Got 18 homes from response
-[2021-03-06T20:06:06.105] [INFO] homes - Data is the same
-[2021-03-06T20:07:05.459] [INFO] homes - Running loop...
-[2021-03-06T20:07:05.805] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
-[2021-03-06T20:07:06.214] [INFO] parser - Got 18 homes from response
-[2021-03-06T20:07:06.261] [INFO] homes - Data is the same
-[2021-03-06T20:08:05.461] [INFO] homes - Running loop...
-[2021-03-06T20:08:05.796] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
-[2021-03-06T20:08:06.135] [INFO] parser - Got 18 homes from response
-[2021-03-06T20:08:06.157] [INFO] homes - Data is the same
-[2021-03-06T20:09:05.461] [INFO] homes - Running loop...
-[2021-03-06T20:09:05.795] [INFO] parser - Got response from https://www.mil.by/ru/housing/commerc/
-[2021-03-06T20:09:06.035] [INFO] parser - Got 18 homes from response
-[2021-03-06T20:09:06.058] [INFO] homes - Data is the same
+[2021-03-06T23:42:58.864] [INFO] postgres - Connected to DataBase
+[2021-03-06T23:43:12.982] [INFO] bot - User [168305743] added city name Минск
+[2021-03-06T23:43:12.984] [INFO] users - State for user 168305743 was updated to RUN
+[2021-03-06T23:43:12.984] [INFO] observers - 0
+[2021-03-06T23:43:12.985] [INFO] users - City for user 168305743 was updated to Минск
+[2021-03-06T23:43:13.005] [INFO] homes - 3 homes sent
+[2021-03-06T23:43:58.869] [INFO] homes - Running loop...
+[2021-03-06T23:43:59.586] [INFO] parser - Got 18 homes from response
+[2021-03-06T23:43:59.626] [INFO] homes - Data is the same
+[2021-03-06T23:44:00.181] [INFO] bot - User [168305743] added city name Барановичи
+[2021-03-06T23:44:00.182] [INFO] users - State for user 168305743 was updated to RUN
+[2021-03-06T23:44:00.182] [INFO] observers - 0
+[2021-03-06T23:44:00.182] [INFO] users - City for user 168305743 was updated to Барановичи
+[2021-03-06T23:44:00.200] [INFO] homes - 4 homes sent
+[2021-03-06T23:44:58.870] [INFO] homes - Running loop...
+[2021-03-06T23:44:59.537] [INFO] parser - Got 18 homes from response
+[2021-03-06T23:44:59.560] [INFO] homes - Data is the same

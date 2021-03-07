@@ -4,9 +4,10 @@ const { log4js } = require('../utils/log4js');
 const logger = log4js.getLogger('users');
 const { client, turnConnection } = require('../services/postgres');
 
-module.exports.getUsers = async () => {
+module.exports.getSubscribedUsers = async () => {
     try {
-        const users = await (await client.query('select * from users')).rows;
+        const users = [];
+        users = await (await client.query('select * from users where state = "SUBSCRIBED"')).rows;
         logger.info(users);
         return users;
     } catch(error) {
@@ -18,7 +19,6 @@ module.exports.getUsers = async () => {
 module.exports.getUserById = async id => {
     try {
         const user = await (await client.query(`select * from users where id = ${id}`)).rows;
-        logger.info(`getUserByid(${id}) : true`);
         return user.pop();
     } catch(error) {
         logger.error(error);

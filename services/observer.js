@@ -1,7 +1,7 @@
 'use strict';
 
 const { log4js } = require('../utils/log4js');
-const logger = log4js.getLogger('observer');
+const logger = log4js.getLogger('observers');
 
 class EventObserver {
     constructor() {
@@ -9,7 +9,6 @@ class EventObserver {
     }
   
     subscribe(object) {
-        logger.info(object);
         this.observers.push(object);
     }
   

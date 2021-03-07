@@ -4,7 +4,7 @@ const yargs = require('yargs').argv;
 const { log4js } = require('./utils/log4js');
 const logger = log4js.getLogger('bot');
 const { startLoop, findHome } = require('./models/homes');
-const { getUsers, getUserById, createUser, changeState, insertCity } = require('./models/users');
+const { getSubscribedUsers, getUserById, createUser, changeState, insertCity } = require('./models/users');
 const { Telegraf, Markup } = require('telegraf');
 const configs = require('./configs/bot.json');
 const bot = new Telegraf(yargs.token);
@@ -39,18 +39,18 @@ bot.on('message', async ctx => {
         await ctx.reply(`Нет квартир в г.${city}`);
         return ctx.reply('Подписаться на обновление?',
             Markup.inlineKeyboard([
-                Markup.button.callback('Подписаться', 'Follow')
+                Markup.button.callback('🔔Подписаться', 'Follow')
         ]));
     } else {
     await ctx.reply(message);
     return ctx.reply('Подписаться на обновление?',
         Markup.inlineKeyboard([
-            Markup.button.callback('Подписаться', 'Subscribe')
+            Markup.button.callback('🔔Подписаться', 'Subscribe')
         ]));
     }
 });
 
-bot.action('Subscribe', async (ctx, next) => {
+bot.action('Subscribe', async ctx => {
     const id = ctx.update.callback_query.from.id;
     const user = await getUserById(id);
     await changeState(id, 'SUBSCRIBED');
@@ -59,8 +59,7 @@ bot.action('Subscribe', async (ctx, next) => {
         ctx: ctx,
         func: broadcast
     });
-    await ctx.reply('Вы успешно подписались').then(() => next());
-    return ctx.reply('Можно искать в других городах...',
+    return ctx.reply('Вы успешно подписались',
     Markup.inlineKeyboard([
         Markup.button.callback('Отписаться от обновления', 'Unsubscribe')
     ]));
@@ -80,6 +79,9 @@ async function broadcast(user, ctx) {
     const message = await findHome(user.city);
         if (message !== '') {
             logger.info(`BROADCAST is working for ${user.id}`);
-            await ctx.telegram.sendMessage(user.id, message);
+            return ctx.reply('⚡Обновление квартир по подписке⚡\n' + message,
+            Markup.inlineKeyboard([
+            Markup.button.callback('Отписаться от обновления', 'Unsubscribe')
+            ]));
         }
 }
