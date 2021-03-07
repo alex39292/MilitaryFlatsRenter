@@ -59,9 +59,9 @@ async function getHomes() {
 
 module.exports.findHome = async address => {
     try {
-        const field = `.${address}`;
+        address = `.${address}`;
         const homes = await getHomes();
-        const result = homes.filter(home => home.address.toUpperCase().includes(field.toUpperCase()));
+        const result = homes.filter(home => home.address.toUpperCase().includes(address.toUpperCase()));
         logger.info(`${result.length} homes sent`);
         return makeMessage(result);
     } catch (error) {
@@ -71,13 +71,10 @@ module.exports.findHome = async address => {
 }
 
 function makeMessage(result) {
-    let count = 0;
     let message = '';
-    if (result.length === 0) {
-        return message;
-    }
+    if (result.length !== 0) {
     result.forEach(home => {
-message += `${emoji.generateNumberToSticker(++count)}. ${home.address}
+message += `${emoji.generateNumberToSticker(result.indexOf(home) + 1)}. ${home.address}
 Комнат: ${home.flats}
 Этаж: ${home.floor}
 Площадь: ${home.area}
@@ -86,5 +83,6 @@ ${emoji.generateZap()} ${home.notes}
         
 `;
 });
+    }
     return message;
 }

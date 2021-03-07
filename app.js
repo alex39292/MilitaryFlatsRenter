@@ -4,7 +4,7 @@ const yargs = require('yargs').argv;
 const { log4js } = require('./utils/log4js');
 const logger = log4js.getLogger('bot');
 const { startLoop, findHome } = require('./models/homes');
-const { getSubscribedUsers, getUserById, createUser, changeState, insertCity } = require('./models/users');
+const { getUserById, createUser, changeState, insertCity } = require('./models/users');
 const { Telegraf, Markup } = require('telegraf');
 const configs = require('./configs/bot.json');
 const bot = new Telegraf(yargs.token);
@@ -50,7 +50,7 @@ bot.on('message', async ctx => {
     }
 });
 
-bot.action('Subscribe', async ctx => {
+bot.action('Subscribe', async (ctx, next) => {
     const id = ctx.update.callback_query.from.id;
     const user = await getUserById(id);
     await changeState(id, 'SUBSCRIBED');
@@ -62,7 +62,7 @@ bot.action('Subscribe', async ctx => {
     return ctx.reply('Вы успешно подписались',
     Markup.inlineKeyboard([
         Markup.button.callback('Отписаться от обновления', 'Unsubscribe')
-    ]));
+    ])).then(() => next());
 });
 
 bot.action('Unsubscribe', async (ctx, next) => {

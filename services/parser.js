@@ -10,25 +10,27 @@ module.exports.getData = async () => {
     const homes = [];
     const response = await getDOM();
     const $ = cheerio.load(response.data);
-    const id = getElementsBy(parser.selectors.id);
-    logger.info(`Got ${id.length} homes from response`);
-    const address = getElementsBy(parser.selectors.address);
-    const floor = getElementsBy(parser.selectors.floor);
-    const flats = getElementsBy(parser.selectors.flats);
-    const area = getElementsBy(parser.selectors.area);
-    const deadLine = getElementsBy(parser.selectors.deadLine);
-    const notes = getElementsBy(parser.selectors.other);
+    const fromResponse = {
+        'id': getElementsBy(parser.selectors.id),
+        'address': getElementsBy(parser.selectors.address),
+        'floor': getElementsBy(parser.selectors.floor),
+        'flats': getElementsBy(parser.selectors.flats),
+        'area': getElementsBy(parser.selectors.area),
+        'deadLine': getElementsBy(parser.selectors.deadLine),
+        'notes': getElementsBy(parser.selectors.other),
+    };
+    logger.info(`Got ${fromResponse.id.length} homes from response`);
     
-    while (id.length !== 0) {
-        const home = {};
-        home.id = id.shift();
-        home.address = address.shift();
-        home.floor = floor.shift();
-        home.flats = flats.shift();
-        home.area = area.shift();
-        home.deadLine = deadLine.shift();
-        home.notes = notes.shift();
-        homes.push(home);
+    while (fromResponse.id.length !== 0) {
+        homes.push({
+            'id': fromResponse.id.shift(),
+            'address': fromResponse.address.shift(),
+            'floor': fromResponse.floor.shift(),
+            'flats': fromResponse.flats.shift(),
+            'area': fromResponse.area.shift(),
+            'deadLine': fromResponse.deadLine.shift(),
+            'notes': fromResponse.notes.shift(),
+        });
     }
 
     function getElementsBy(selector) {

@@ -1,8 +1,4 @@
 'use strict';
-
-const { log4js } = require('../utils/log4js');
-const logger = log4js.getLogger('observers');
-
 class EventObserver {
     constructor() {
         this.observers = [];
@@ -14,7 +10,6 @@ class EventObserver {
   
     unsubscribe(id) {
         this.observers = this.observers.filter(subscriber => subscriber.user.id !== id);
-        logger.info(this.observers.length);
     }
   
     broadcast() {
