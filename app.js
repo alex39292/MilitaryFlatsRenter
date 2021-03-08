@@ -71,7 +71,7 @@ bot.action('Unsubscribe', async (ctx, next) => {
     observer.unsubscribe(user.id);
     await changeState(id, 'RUN');
     await ctx.reply('Вы отписались').then(() => next());
-})
+});
 
 bot.launch(configs);
 
