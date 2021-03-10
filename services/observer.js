@@ -9,11 +9,11 @@ class EventObserver {
     }
   
     unsubscribe(id) {
-        this.observers = this.observers.filter(subscriber => subscriber.user.id !== id);
+        this.observers = this.observers.filter(subscriber => subscriber.id !== id);
     }
   
     broadcast() {
-        this.observers.forEach(subscriber => subscriber.func(subscriber.user, subscriber.ctx));
+        this.observers.forEach(subscriber => subscriber.func(subscriber.id));
     }
   }
 

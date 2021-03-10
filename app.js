@@ -4,14 +4,14 @@ const yargs = require('yargs').argv;
 const { log4js } = require('./utils/log4js');
 const logger = log4js.getLogger('bot');
 const { startLoop, findHome } = require('./models/homes');
-const { getUserById, createUser, changeState, insertCity } = require('./models/users');
+const { getUserById, createUser, changeState, setCity } = require('./models/users');
 const { Telegraf, Markup } = require('telegraf');
 const configs = require('./configs/bot.json');
 const bot = new Telegraf(yargs.token);
 const EventObserver = require('./services/observer');
 const observer = new EventObserver();
 
-startLoop(observer);
+startLoop(observer, broadcast);
 
 bot.start(async ctx => {
     const user = ctx.message.from;
@@ -25,15 +25,15 @@ bot.start(async ctx => {
 });
 
 bot.on('message', async ctx => {
-    const user = ctx.message.from;
+    const id = ctx.message.from.id;
     const city = ctx.message.text;
     if (!/[^\.~`!#$%\^&*№+=\-\[\]\\';,/{}|\\":<>\?a-zA-Z0-9]/.test(city)) {
         return ctx.reply(`Не верно введен город. Пример: Минск`);
     }
-    logger.info(`User [${user.id}] added city name ${city}`);
-    await changeState(user.id, 'RUN');
-    observer.unsubscribe(user.id);
-    await insertCity(user.id, city);
+    logger.info(`User [${id}] added city name ${city}`);
+    await changeState(id, 'RUN');
+    observer.unsubscribe(id);
+    await setCity(id, city);
     const message = await findHome(city);
     if (message === '') {
         await ctx.reply(`Нет квартир в г.${city}`);
@@ -50,36 +50,34 @@ bot.on('message', async ctx => {
     }
 });
 
-bot.action('Subscribe', async (ctx, next) => {
+bot.action('Subscribe', async ctx => {
     const id = ctx.update.callback_query.from.id;
-    const user = await getUserById(id);
     await changeState(id, 'SUBSCRIBED');
     observer.subscribe({
-        user: user,
-        ctx: ctx,
+        id: id,
         func: broadcast
     });
     return ctx.reply('Вы успешно подписались',
     Markup.inlineKeyboard([
         Markup.button.callback('Отписаться от обновления', 'Unsubscribe')
-    ])).then(() => next());
+    ]));
 });
 
-bot.action('Unsubscribe', async (ctx, next) => {
+bot.action('Unsubscribe', async ctx => {
     const id = ctx.update.callback_query.from.id;
-    const user = await getUserById(id);
-    observer.unsubscribe(user.id);
+    observer.unsubscribe(id);
     await changeState(id, 'RUN');
-    await ctx.reply('Вы отписались').then(() => next());
+    await ctx.reply('Вы отписались');
 });
 
 bot.launch(configs);
 
-async function broadcast(user, ctx) {
+async function broadcast(id) {
+    const user = await getUserById(id);
     const message = await findHome(user.city);
         if (message !== '') {
             logger.info(`BROADCAST is working for ${user.id}`);
-            return ctx.reply('⚡Обновление квартир по подписке⚡\n' + message,
+            return bot.telegram.sendMessage(user.id,'⚡Обновление квартир по подписке⚡\n' + message,
             Markup.inlineKeyboard([
             Markup.button.callback('Отписаться от обновления', 'Unsubscribe')
             ]));

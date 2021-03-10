@@ -6,10 +6,21 @@ const { getData } = require('../services/parser');
 const { client, turnConnection } = require('../services/postgres');
 const Emoji = require('./emoji');
 const emoji = new Emoji();
+const { getSubscribedUsers } = require('./users');
 
-module.exports.startLoop = async observer => {
+module.exports.startLoop = async (observer, func) => {
     try {
         await turnConnection(true);
+        
+        const ids = await getSubscribedUsers();
+        if (ids.length !== 0) {
+        for(let id of ids) {
+            observer.subscribe({
+                id: id,
+                func: func
+            });
+            }
+        }
             
         await setInterval(async () => {
             logger.info('Running loop...');

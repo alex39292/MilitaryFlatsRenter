@@ -6,10 +6,9 @@ const { client, turnConnection } = require('../services/postgres');
 
 module.exports.getSubscribedUsers = async () => {
     try {
-        const users = [];
-        users = await (await client.query('select * from users where state = "SUBSCRIBED"')).rows;
-        logger.info(users);
-        return users;
+        let ids = [];
+        ids = await (await client.query('select id from users where state = \'SUBSCRIBED\'')).rows;
+        return ids;
     } catch(error) {
         logger.error(error);
         turnConnection(false);
@@ -46,7 +45,7 @@ module.exports.changeState = async (id, state) => {
     }
 }
 
-module.exports.insertCity = async (id, city) => {
+module.exports.setCity = async (id, city) => {
     try {
         client.query(`update users set city = '${city}' where id = ${id}`);
         logger.info(`City for user ${id} was updated to ${city}`);
