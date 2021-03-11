@@ -8,18 +8,13 @@ const Emoji = require('./emoji');
 const emoji = new Emoji();
 const { getSubscribedUsers } = require('./users');
 
-module.exports.startLoop = async (observer, func) => {
+module.exports.startLoop = async observer => {
     try {
         await turnConnection(true);
         
         const ids = await getSubscribedUsers();
         if (ids.length !== 0) {
-        for(let id of ids) {
-            observer.subscribe({
-                id: id,
-                func: func
-            });
-            }
+            ids.forEach(id => observer.subscribe(id.id));
         }
             
         await setInterval(async () => {

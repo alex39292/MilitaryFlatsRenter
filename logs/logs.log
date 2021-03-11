@@ -1,2 +1,34 @@
-[2021-03-11T02:34:52.884] [INFO] postgres - Connected to DataBase
-[2021-03-11T02:35:01.996] [INFO] users - State for user 168305743 was updated to RUN
+[2021-03-11T03:41:34.152] [ERROR] postgres - error: password authentication failed for user "Alex"
+    at Parser.parseErrorMessage (D:\bot_js\node_modules\pg-protocol\dist\parser.js:278:15)
+    at Parser.handlePacket (D:\bot_js\node_modules\pg-protocol\dist\parser.js:126:29)
+    at Parser.parse (D:\bot_js\node_modules\pg-protocol\dist\parser.js:39:38)
+    at Socket.<anonymous> (D:\bot_js\node_modules\pg-protocol\dist\index.js:10:42)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:309:12)
+    at readableAddChunk (_stream_readable.js:284:9)
+    at Socket.Readable.push (_stream_readable.js:223:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+  length: 100,
+  severity: 'FATAL',
+  code: '28P01',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'auth.c',
+  line: '329',
+  routine: 'auth_failed'
+}
+[2021-03-11T03:41:34.157] [ERROR] users - Error: Client was closed and is not queryable
+    at D:\bot_js\node_modules\pg\lib\client.js:570:27
+    at processTicksAndRejections (internal/process/task_queues.js:75:11)
+[2021-03-11T03:41:34.159] [ERROR] homes - TypeError: Cannot read property 'length' of undefined
+    at module.exports.startLoop (D:\bot_js\models\homes.js:16:17)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)

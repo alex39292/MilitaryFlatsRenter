@@ -4,14 +4,14 @@ const yargs = require('yargs').argv;
 const { log4js } = require('./utils/log4js');
 const logger = log4js.getLogger('bot');
 const { startLoop, findHome } = require('./models/homes');
-const { getUserById, createUser, changeState, setCity } = require('./models/users');
+const { createUser, changeState, setCity, getCityById } = require('./models/users');
 const { Telegraf, Markup } = require('telegraf');
-const configs = require('./configs/bot.json');
+const configs = require('./configs/bot');
 const bot = new Telegraf(yargs.token);
 const EventObserver = require('./services/observer');
-const observer = new EventObserver();
+const observer = new EventObserver(broadcast);
 
-startLoop(observer, broadcast);
+startLoop(observer);
 
 bot.start(async ctx => {
     const user = ctx.message.from;
@@ -53,10 +53,7 @@ bot.on('message', async ctx => {
 bot.action('Subscribe', async ctx => {
     const id = ctx.update.callback_query.from.id;
     await changeState(id, 'SUBSCRIBED');
-    observer.subscribe({
-        id: id,
-        func: broadcast
-    });
+    observer.subscribe(id);
     return ctx.reply('Вы успешно подписались',
     Markup.inlineKeyboard([
         Markup.button.callback('Отписаться от обновления', 'Unsubscribe')
@@ -73,11 +70,11 @@ bot.action('Unsubscribe', async ctx => {
 bot.launch(configs);
 
 async function broadcast(id) {
-    const user = await getUserById(id);
-    const message = await findHome(user.city);
+    const city = await getCityById(id);
+    const message = await findHome(city);
         if (message !== '') {
-            logger.info(`BROADCAST is working for ${user.id}`);
-            return bot.telegram.sendMessage(user.id,'⚡Обновление квартир по подписке⚡\n' + message,
+            logger.info(`BROADCAST is working for ${id}`);
+            return bot.telegram.sendMessage(id,'⚡Обновление квартир по подписке⚡\n' + message,
             Markup.inlineKeyboard([
             Markup.button.callback('Отписаться от обновления', 'Unsubscribe')
             ]));

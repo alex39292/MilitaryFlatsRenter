@@ -42,8 +42,7 @@ module.exports.getData = async () => {
 
 async function getDOM() {
     try {
-        const response = await axios.get(parser.url);
-        return response;
+        return await axios.get(parser.url);
     } catch (error) {
         logger.error(error);
     }

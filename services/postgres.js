@@ -1,7 +1,7 @@
 'use strict';
 
 const { Client } = require('pg');
-const options = require('../configs/postgres.json');
+const options = require('../configs/postgres');
 const { log4js } = require('../utils/log4js');
 const logger = log4js.getLogger('postgres');
 

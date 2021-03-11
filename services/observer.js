@@ -1,19 +1,20 @@
 'use strict';
 class EventObserver {
-    constructor() {
+    constructor(func) {
         this.observers = [];
+        this.func = func;
     }
   
-    subscribe(object) {
-        this.observers.push(object);
+    subscribe(id) {
+        this.observers.push(id);
     }
   
     unsubscribe(id) {
-        this.observers = this.observers.filter(subscriber => subscriber.id !== id);
+        this.observers = this.observers.filter(subscriber => subscriber !== id);
     }
   
     broadcast() {
-        this.observers.forEach(subscriber => subscriber.func(subscriber.id));
+        this.observers.forEach(subscriber => this.func(subscriber));
     }
   }
 

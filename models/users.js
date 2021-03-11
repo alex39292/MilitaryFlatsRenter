@@ -15,10 +15,9 @@ module.exports.getSubscribedUsers = async () => {
     }
 }
 
-module.exports.getUserById = async id => {
+module.exports.getCityById = async id => {
     try {
-        const user = await (await client.query(`select * from users where id = ${id}`)).rows;
-        return user.pop();
+        return await (await client.query(`select city from users where id = ${id}`)).rows.pop().city;
     } catch(error) {
         logger.error(error);
         turnConnection(false);
