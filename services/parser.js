@@ -2,7 +2,7 @@
 
 const axios = require('axios');
 const cheerio = require('cheerio');
-const parser = require('../configs/parser.json');
+const parser = require('../configs/parser');
 const { log4js } = require('../utils/log4js');
 const logger = log4js.getLogger('parser')
 
