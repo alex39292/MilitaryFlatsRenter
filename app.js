@@ -10,6 +10,8 @@ const configs = require('./configs/bot');
 const bot = new Telegraf(yargs.token);
 const EventObserver = require('./services/observer');
 const observer = new EventObserver(broadcast);
+const express = require('express');
+const app = express();
 
 startLoop(observer);
 
@@ -67,7 +69,16 @@ bot.action('Unsubscribe', async ctx => {
     await ctx.reply('Вы отписались');
 });
 
-bot.launch(configs);
+bot.telegram.setWebhook(configs.webhook.domain);
+
+app.get('/', (req, res) => {
+    res.send('hello');
+});
+
+app.use(bot.webhookCallback('/'));
+app.listen(configs.webhook.port, () => {
+    logger.info('Listening app on port 5000');
+})
 
 async function broadcast(id) {
     const city = await getCityById(id);
