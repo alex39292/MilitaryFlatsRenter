@@ -11,7 +11,16 @@ module.exports.getSubscribedUsers = async () => {
         return ids;
     } catch(error) {
         logger.error(error);
-        turnConnection(false);
+    }
+}
+
+module.exports.getUsers = async () => {
+    try {
+        let users = [];
+        users = await (await client.query('select * from users')).rows;
+        return users;
+    } catch(error) {
+        logger.error(error);
     }
 }
 
@@ -20,7 +29,6 @@ module.exports.getCityById = async id => {
         return await (await client.query(`select city from users where id = ${id}`)).rows.pop().city;
     } catch(error) {
         logger.error(error);
-        turnConnection(false);
     }
 }
 
@@ -30,7 +38,6 @@ module.exports.createUser = async (id, user_name) => {
         logger.info(`User with id: ${id} was created`);
     } catch(error) {
         logger.error(error);
-        turnConnection(false);
     }
 }
 
@@ -40,7 +47,6 @@ module.exports.changeState = async (id, state) => {
         logger.info(`State for user ${id} was updated to ${state}`);
     } catch(error) {
         logger.error(error);
-        turnConnection(false);
     }
 }
 
@@ -50,6 +56,5 @@ module.exports.setCity = async (id, city) => {
         logger.info(`City for user ${id} was updated to ${city}`);
     } catch(error) {
         logger.error(error);
-        turnConnection(false);
     }
 }

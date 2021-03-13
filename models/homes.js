@@ -10,7 +10,7 @@ const { getSubscribedUsers } = require('./users');
 
 module.exports.startLoop = async observer => {
     try {
-        await turnConnection(true);
+        await turnConnection();
         
         const ids = await getSubscribedUsers();
         if (ids.length !== 0) {
@@ -30,7 +30,6 @@ module.exports.startLoop = async observer => {
         }, 60000);
     } catch (error) {
         logger.error(error);
-        await turnConnection(false);
     }
 }
 
@@ -49,19 +48,18 @@ async function setHomes(homes) {
         logger.info(`Homes were updated. Added ${length} rows`);
     } catch (error) {
         logger.error(error);
-        turnConnection(false);
     }
 }
 
-async function getHomes() {
+const getHomes = async () => {
     try {
         const homes = await (await client.query('select * from homes')).rows;
         return homes;
     } catch (error) {
         logger.error(error);
-        turnConnection(false);
     }
 }
+module.exports.getHomes = getHomes;
 
 module.exports.findHome = async address => {
     try {
@@ -72,7 +70,6 @@ module.exports.findHome = async address => {
         return makeMessage(result);
     } catch (error) {
         logger.error(error);
-        turnConnection(false);
     }
 }
 

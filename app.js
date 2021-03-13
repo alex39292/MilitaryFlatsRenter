@@ -3,14 +3,15 @@
 const yargs = require('yargs').argv;
 const { log4js } = require('./utils/log4js');
 const logger = log4js.getLogger('bot');
-const { startLoop, findHome } = require('./models/homes');
-const { createUser, changeState, setCity, getCityById } = require('./models/users');
+const { startLoop, findHome, getHomes } = require('./models/homes');
+const { createUser, changeState, setCity, getCityById, getUsers } = require('./models/users');
 const { Telegraf, Markup } = require('telegraf');
 const configs = require('./configs/bot');
 const bot = new Telegraf(yargs.token);
 const EventObserver = require('./services/observer');
 const observer = new EventObserver(broadcast);
 const express = require('express');
+const es6Renderer = require('express-es6-template-engine');
 const app = express();
 
 startLoop(observer);
@@ -71,14 +72,38 @@ bot.action('Unsubscribe', async ctx => {
 
 bot.telegram.setWebhook(configs.webhook.domain);
 
+app.engine('html', es6Renderer);
+app.set('views', './pages');
+app.set('view engine', 'html');
+app.use(express.static(__dirname + '/pages'));
+
 app.get('/', (req, res) => {
-    res.send('hello');
+    res.render('index');
 });
+
+app.get('/users', async (req, res) => {
+    const users = await getUsers();
+    res.send(users);
+});
+
+app.get('/homes', async (req, res) => {
+    const homes = await getHomes();
+    res.send(homes);
+});
+
+app.get('/message', async (req, res) => {
+    res.render('message');
+});
+
+app.post('/message', (req, res) => {
+    logger.info(req.body);
+    res.send(req.body.text);
+})
 
 app.use(bot.webhookCallback('/'));
 app.listen(configs.webhook.port, () => {
     logger.info('Listening app on port 5000');
-})
+});
 
 async function broadcast(id) {
     const city = await getCityById(id);

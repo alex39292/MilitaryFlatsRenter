@@ -8,15 +8,10 @@ const logger = log4js.getLogger('postgres');
 const client = new Client(options);
 module.exports.client = client;
 
-module.exports.turnConnection = async (flag) => {
+module.exports.turnConnection = async () => {
     try {
-        if (flag) {
             await client.connect();
             logger.info('Connected to DataBase');
-        } else {
-            await client.end();
-            logger.info('Connection closed');
-        }
     } catch (error) {
         await client.end();
         logger.error(error);
