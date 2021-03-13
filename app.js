@@ -76,6 +76,7 @@ app.engine('html', es6Renderer);
 app.set('views', './pages');
 app.set('view engine', 'html');
 app.use(express.static(__dirname + '/pages'));
+app.use(express.urlencoded({extended: false}));
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -96,7 +97,7 @@ app.get('/message', async (req, res) => {
 });
 
 app.post('/message', (req, res) => {
-    logger.info(req.body);
+    
     res.send(req.body.text);
 })
 
