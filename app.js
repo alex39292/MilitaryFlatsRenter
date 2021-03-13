@@ -96,9 +96,9 @@ app.get('/message', async (req, res) => {
     res.render('message');
 });
 
-app.post('/message', (req, res) => {
-    
-    res.send(req.body.text);
+app.post('/message', async (req, res) => {
+    await sendMessage(req.body.text);
+    res.send('Отправлено');
 })
 
 app.use(bot.webhookCallback('/'));
@@ -116,4 +116,12 @@ async function broadcast(id) {
             Markup.button.callback('Отписаться от обновления', 'Unsubscribe')
             ]));
         }
+}
+
+async function sendMessage(text) {
+    const users = await getUsers();
+    users.forEach(user => {
+        const id = user.id;
+        setTimeout(() => bot.telegram.sendMessage(id, text), 500);
+    });
 }
