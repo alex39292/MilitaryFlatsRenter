@@ -4,7 +4,7 @@ const yargs = require('yargs').argv;
 const { log4js } = require('./utils/log4js');
 const logger = log4js.getLogger('bot');
 const { startLoop, findHome, getHomes } = require('./models/homes');
-const { createUser, changeState, setCity, getCityById, getUsers } = require('./models/users');
+const { createUser, changeState, setCity, getCityById, getUsers, getUsersId, deleteUser } = require('./models/users');
 const { Telegraf, Markup } = require('telegraf');
 const configs = require('./configs/bot');
 const bot = new Telegraf(yargs.token);
@@ -98,13 +98,12 @@ app.get('/message', async (req, res) => {
 
 app.post('/message', async (req, res) => {
     const result = await sendMessage(req.body.text);
-    if (result !== null) {
+    if (result) {
         res.send('Отправлено');
     } else {
-        res.send('Нет пользователей для отправки');
+        res.send('Нет пользователей');
     }
-    
-})
+});
 
 app.use(bot.webhookCallback('/'));
 app.listen(configs.webhook.port, () => {
@@ -119,7 +118,7 @@ async function broadcast(id) {
             return bot.telegram.sendMessage(id,'⚡Обновление квартир по подписке⚡\n' + message,
             Markup.inlineKeyboard([
             Markup.button.callback('Отписаться от обновления', 'Unsubscribe')
-            ]));
+            ])).catch(async () => await deleteUser(id));
         }
 }
 
@@ -128,9 +127,11 @@ async function sendMessage(text) {
     if (users.length !== 0) {
         users.forEach(user => {
             const id = user.id;
-            setTimeout(() => bot.telegram.sendMessage(id, text), 500);
+            bot.telegram.sendMessage(id, text)
+                .catch(async () => await deleteUser(id));
         });
+    return true;
     } else {
-        return null;
+        return false;
     }
 }

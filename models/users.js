@@ -14,6 +14,16 @@ module.exports.getSubscribedUsers = async () => {
     }
 }
 
+module.exports.getUsersId = async () => {
+    try {
+        let ids = [];
+        ids = await (await client.query('select id from users')).rows;
+        return ids;
+    } catch(error) {
+        logger.error(error);
+    }
+}
+
 module.exports.getUsers = async () => {
     try {
         let users = [];
@@ -36,6 +46,14 @@ module.exports.createUser = async (id, user_name) => {
     try {
         client.query(`insert into users(id, state, user_name) values(${id}, 'START', '${user_name}')`);
         logger.info(`User with id: ${id} was created`);
+    } catch(error) {
+        logger.error(error);
+    }
+}
+
+module.exports.deleteUser = async id => {
+    try {
+        return await (await client.query(`delete from users where id = ${id}`));
     } catch(error) {
         logger.error(error);
     }

@@ -1,6 +1,6 @@
 module.exports = {
     webhook: {
-        domain: 'https://97f69eb53617.ngrok.io',
+        domain: 'https://b243edd0ea81.ngrok.io',
         port: 5000
     }
 }
