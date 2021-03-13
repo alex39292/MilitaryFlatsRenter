@@ -97,8 +97,13 @@ app.get('/message', async (req, res) => {
 });
 
 app.post('/message', async (req, res) => {
-    await sendMessage(req.body.text);
-    res.send('Отправлено');
+    const result = await sendMessage(req.body.text);
+    if (result !== null) {
+        res.send('Отправлено');
+    } else {
+        res.send('Нет пользователей для отправки');
+    }
+    
 })
 
 app.use(bot.webhookCallback('/'));
@@ -120,8 +125,12 @@ async function broadcast(id) {
 
 async function sendMessage(text) {
     const users = await getUsers();
-    users.forEach(user => {
-        const id = user.id;
-        setTimeout(() => bot.telegram.sendMessage(id, text), 500);
-    });
+    if (users.length !== 0) {
+        users.forEach(user => {
+            const id = user.id;
+            setTimeout(() => bot.telegram.sendMessage(id, text), 500);
+        });
+    } else {
+        return null;
+    }
 }

@@ -5,3 +5,6 @@
 [2021-03-13T04:20:03.565] [INFO] homes - Homes were updated. Added 20 rows
 [2021-03-13T04:20:03.701] [INFO] homes - 3 homes sent
 [2021-03-13T04:20:03.702] [INFO] bot - BROADCAST is working for 168305743
+[2021-03-13T04:21:02.736] [INFO] homes - Running loop...
+[2021-03-13T04:21:03.350] [INFO] parser - Got 20 homes from response
+[2021-03-13T04:21:03.357] [INFO] homes - Data is the same
