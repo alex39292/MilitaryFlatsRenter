@@ -1,6 +1,2 @@
-[2021-03-15T22:11:35.541] [INFO] bot - Listening app on port 5000
-[2021-03-15T22:11:36.397] [INFO] postgres - Connected to DataBase
-[2021-03-15T22:11:53.557] [INFO] bot - User [168305743] added city name Минск
-[2021-03-15T22:11:53.558] [INFO] users - State for user 168305743 was updated to RUN
-[2021-03-15T22:11:53.558] [INFO] users - City for user 168305743 was updated to Минск
-[2021-03-15T22:11:53.697] [INFO] homes - 3 homes sent
+[2021-03-15T22:16:01.068] [INFO] bot - Listening app on port 5000
+[2021-03-15T22:16:02.106] [INFO] postgres - Connected to DataBase

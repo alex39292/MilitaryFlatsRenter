@@ -126,8 +126,8 @@ async function sendMessage(text) {
     const ids = await getUsersId();
     if (ids.length !== 0) {
         ids.forEach(id => {
-            bot.telegram.sendMessage(id.id, text)
-                .catch(async () => await deleteUser(id.id));
+            bot.telegram.sendMessage(id, text)
+                .catch(async () => await deleteUser(id));
         });
     return true;
     } else {

@@ -17,7 +17,7 @@ module.exports.getSubscribedUsers = async () => {
 module.exports.getUsersId = async () => {
     try {
         let ids = [];
-        ids = await (await client.query('select id from users')).rows;
+        ids = await (await client.query('select id from users')).rows.map(id => id.id);
         return ids;
     } catch(error) {
         logger.error(error);
