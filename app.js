@@ -123,12 +123,11 @@ async function broadcast(id) {
 }
 
 async function sendMessage(text) {
-    const users = await getUsers();
-    if (users.length !== 0) {
-        users.forEach(user => {
-            const id = user.id;
-            bot.telegram.sendMessage(id, text)
-                .catch(async () => await deleteUser(id));
+    const ids = await getUsersId();
+    if (ids.length !== 0) {
+        ids.forEach(id => {
+            bot.telegram.sendMessage(id.id, text)
+                .catch(async () => await deleteUser(id.id));
         });
     return true;
     } else {

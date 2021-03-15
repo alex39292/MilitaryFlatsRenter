@@ -1,11 +1,6 @@
-[2021-03-14T01:24:26.509] [INFO] bot - Listening app on port 5000
-[2021-03-14T01:24:26.637] [INFO] postgres - Connected to DataBase
-[2021-03-14T01:25:26.656] [INFO] homes - Running loop...
-[2021-03-14T01:25:28.023] [INFO] parser - Got 20 homes from response
-[2021-03-14T01:25:28.031] [INFO] homes - Homes were updated. Added 20 rows
-[2021-03-14T01:25:28.177] [INFO] homes - 3 homes sent
-[2021-03-14T01:25:28.178] [INFO] bot - BROADCAST is working for 168305743
-[2021-03-14T01:25:53.322] [INFO] users - State for user 168305743 was updated to RUN
-[2021-03-14T01:26:26.657] [INFO] homes - Running loop...
-[2021-03-14T01:26:27.965] [INFO] parser - Got 20 homes from response
-[2021-03-14T01:26:27.971] [INFO] homes - Data is the same
+[2021-03-15T22:11:35.541] [INFO] bot - Listening app on port 5000
+[2021-03-15T22:11:36.397] [INFO] postgres - Connected to DataBase
+[2021-03-15T22:11:53.557] [INFO] bot - User [168305743] added city name Минск
+[2021-03-15T22:11:53.558] [INFO] users - State for user 168305743 was updated to RUN
+[2021-03-15T22:11:53.558] [INFO] users - City for user 168305743 was updated to Минск
+[2021-03-15T22:11:53.697] [INFO] homes - 3 homes sent
