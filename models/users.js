@@ -2,7 +2,7 @@
 
 const { log4js } = require('../utils/log4js');
 const logger = log4js.getLogger('users');
-const { client, turnConnection } = require('../services/postgres');
+const { client } = require('../services/postgres');
 
 module.exports.getSubscribedUsers = async () => {
     try {
