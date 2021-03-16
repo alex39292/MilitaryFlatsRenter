@@ -1,6 +1,6 @@
 module.exports = {
     webhook: {
-        domain: '',
-        port: null
+        domain: process.env.webhook,
+        port: process.env.port
     }
 }
