@@ -1,6 +1,5 @@
 'use strict';
 
-const yargs = require('yargs').argv;
 const { log4js } = require('./utils/log4js');
 const logger = log4js.getLogger('bot');
 const { startLoop, findHome, getHomes } = require('./models/homes');
