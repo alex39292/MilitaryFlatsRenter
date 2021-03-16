@@ -3,5 +3,6 @@ module.exports = {
     port: 5432,
     database: process.env.database,
     user: process.env.user,
-    password: process.env.password
+    password: process.env.password,
+    ssl: true
 };
