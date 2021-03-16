@@ -15,5 +15,6 @@ module.exports.turnConnection = async () => {
     } catch (error) {
         await client.end();
         logger.error(error);
+        console.log(error);
     }
 }
