@@ -1,7 +1,7 @@
 module.exports = {
-    host: '127.0.0.1',
+    host: process.env.host,
     port: 5432,
-    database: 'telegram',
-    user: 'postgres',
-    password: 1111
+    database: process.env.database,
+    user: process.env.user,
+    password: process.env.password
 };
