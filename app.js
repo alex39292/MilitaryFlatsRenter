@@ -106,8 +106,12 @@ app.post('/message', async (req, res) => {
 
 app.use(bot.webhookCallback('/'));
 
+require('http').createServer().listen(process.env.PORT || 5000).on('request', () => {
+    logger.info('Listening app on port 5000');
+});
+
 //app.listen(5000, () => {
-//    logger.info('Listening app on port 5000');
+    logger.info('Listening app on port 5000');
 //});
 
 async function broadcast(id) {
