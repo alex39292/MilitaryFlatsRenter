@@ -1,7 +1,5 @@
 'use strict';
 
-const { log4js } = require('./utils/log4js');
-const logger = log4js.getLogger('bot');
 const { startLoop, findHome, getHomes } = require('./models/homes');
 const { createUser, changeState, setCity, getCityById, getUsers, getUsersId, deleteUser } = require('./models/users');
 const { Telegraf, Markup } = require('telegraf');
@@ -17,7 +15,7 @@ startLoop(observer);
 
 bot.start(async ctx => {
     const user = ctx.message.from;
-    logger.info(`User [${user.id}] started bot`);
+    console.log(`User [${user.id}] started bot`);
     await createUser(user.id, user.username);
     if (user.is_bot) {
         await changeState(user.id, 'BOT');
@@ -32,7 +30,7 @@ bot.on('message', async ctx => {
     if (!/[^\.~`!#$%\^&*№+=\-\[\]\\';,/{}|\\":<>\?a-zA-Z0-9]/.test(city)) {
         return ctx.reply(`Не верно введен город. Пример: Минск`);
     }
-    logger.info(`User [${id}] added city name ${city}`);
+    console.log(`User [${id}] added city name ${city}`);
     await changeState(id, 'RUN');
     observer.unsubscribe(id);
     await setCity(id, city);
