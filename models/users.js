@@ -59,11 +59,11 @@ module.exports.deleteUser = async id => {
 
 module.exports.changeState = async (id, state) => {
     const userState = await client.query(`select state from users where id = ${id}`)
-        .catch(errorCatcher(error));
+        .catch(error => console.log(error));
     if (userState.state !== state) {
-        client.query(`update users set state = '${state}' where id = ${id}`)
-            .catch(errorCatcher(error))
-            .finally(errorCatcher(`State for user ${id} was updated to ${state}`));
+        await client.query(`update users set state = '${state}' where id = ${id}`)
+            .catch(error => console.log(error))
+            .finally(console.log(`State for user ${id} was updated to ${state}`));
         //console.log();
     }
 }
@@ -75,8 +75,4 @@ module.exports.setCity = async (id, city) => {
     } catch(error) {
         console.log(error);
     }
-}
-
-const errorCatcher = error => {
-    console.log(error);
 }
