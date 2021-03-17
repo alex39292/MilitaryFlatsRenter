@@ -69,7 +69,7 @@ bot.action('Unsubscribe', async ctx => {
     await ctx.reply('Вы отписались');
 });
 
-bot.telegram.setWebhook(configs.webhook.domain);
+//bot.telegram.setWebhook(configs.webhook.domain);
 
 app.engine('html', es6Renderer);
 app.set('views', './pages');
@@ -104,7 +104,7 @@ app.post('/message', async (req, res) => {
     }
 });
 
-app.use(bot.webhookCallback('/'));
+//app.use(bot.webhookCallback('/'));
 
 app.listen(5000, () => {
     logger.info('Listening app on port 5000');
