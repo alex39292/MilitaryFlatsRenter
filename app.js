@@ -106,9 +106,9 @@ app.post('/message', async (req, res) => {
 
 app.use(bot.webhookCallback('/'));
 
-app.listen(5000, () => {
-    logger.info('Listening app on port 5000');
-});
+//app.listen(5000, () => {
+//    logger.info('Listening app on port 5000');
+//});
 
 async function broadcast(id) {
     const city = await getCityById(id);
