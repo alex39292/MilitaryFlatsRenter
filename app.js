@@ -12,6 +12,7 @@ const observer = new EventObserver(broadcast);
 const express = require('express');
 const es6Renderer = require('express-es6-template-engine');
 const app = express();
+console.log(process.env.webhook);
 
 startLoop(observer);
 
