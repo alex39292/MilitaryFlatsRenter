@@ -5,7 +5,7 @@
   "main": "run.js",
   "scripts": {
     "test": "test",
-    "prestart": " npm eject && node utils/clean_up.js && npm config set unsafe-perm true && npm install",
+    "prestart": "node utils/clean_up.js && npm install",
     "parser": "npm run prestart && node services/parser.js",
     "postgres": "npm run prestart && node models/homes.js",
     "start": "node app.js"
