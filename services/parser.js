@@ -3,8 +3,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const parser = require('../configs/parser');
-const { log4js } = require('../utils/log4js');
-const logger = log4js.getLogger('parser')
 
 module.exports.getData = async () => {
     const homes = [];
@@ -19,7 +17,7 @@ module.exports.getData = async () => {
         'deadLine': getElementsBy(parser.selectors.deadLine),
         'notes': getElementsBy(parser.selectors.other),
     };
-    logger.info(`Got ${fromResponse.id.length} homes from response`);
+    console.log(`Got ${fromResponse.id.length} homes from response`);
     
     while (fromResponse.id.length !== 0) {
         homes.push({
@@ -44,6 +42,6 @@ async function getDOM() {
     try {
         return await axios.get(parser.url);
     } catch (error) {
-        logger.error(error);
+        console.log(error);
     }
 }

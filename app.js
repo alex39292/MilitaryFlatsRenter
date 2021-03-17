@@ -13,7 +13,6 @@ const express = require('express');
 const es6Renderer = require('express-es6-template-engine');
 const app = express();
 
-console.log('Test console');
 startLoop(observer);
 
 bot.start(async ctx => {

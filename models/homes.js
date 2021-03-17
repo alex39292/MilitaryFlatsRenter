@@ -1,7 +1,5 @@
 'use strict';
 
-const { log4js } = require('../utils/log4js');
-const logger = log4js.getLogger('homes');
 const { getData } = require('../services/parser');
 const { client, turnConnection } = require('../services/postgres');
 const Emoji = require('./emoji');
@@ -18,18 +16,18 @@ module.exports.startLoop = async observer => {
         }
             
         await setInterval(async () => {
-            logger.info('Running loop...');
+            console.log('Running loop...');
             const currentHomes = await getData();
             const homes = await getHomes();
             if (homes.join('') !== currentHomes.join('')) {
                 await setHomes(currentHomes);
                 observer.broadcast();
             } else {
-                logger.info('Data is the same');
+                console.log('Data is the same');
             }
         }, 600000);
     } catch (error) {
-        logger.error(error);
+        console.log(error);
     }
 }
 
@@ -45,9 +43,9 @@ async function setHomes(homes) {
             }
         client.query(query);
         }
-        logger.info(`Homes were updated. Added ${length} rows`);
+        console.log(`Homes were updated. Added ${length} rows`);
     } catch (error) {
-        logger.error(error);
+        console.log(error);
     }
 }
 
@@ -56,7 +54,7 @@ const getHomes = async () => {
         const homes = await (await client.query('select * from homes')).rows;
         return homes;
     } catch (error) {
-        logger.error(error);
+        console.log(error);
     }
 }
 module.exports.getHomes = getHomes;
@@ -66,10 +64,10 @@ module.exports.findHome = async address => {
         address = `.${address}`;
         const homes = await getHomes();
         const result = homes.filter(home => home.address.toUpperCase().includes(address.toUpperCase()));
-        logger.info(`${result.length} homes sent`);
+        console.log(`${result.length} homes sent`);
         return makeMessage(result);
     } catch (error) {
-        logger.error(error);
+        console.log(error);
     }
 }
 
