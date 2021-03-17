@@ -105,7 +105,7 @@ app.post('/message', async (req, res) => {
 });
 
 app.use(bot.webhookCallback('/'));
-app.listen(configs.webhook.port || 5000, 'militaryflats.herokuapp.com', () => {
+app.listen(configs.webhook.port || 5000, '0.0.0.0', () => {
     logger.info('Listening app on port 5000');
 });
 
