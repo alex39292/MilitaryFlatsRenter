@@ -9,6 +9,7 @@ const EventObserver = require('./services/observer');
 const observer = new EventObserver(broadcast);
 const express = require('express');
 const es6Renderer = require('express-es6-template-engine');
+const { webhook } = require('./configs/bot');
 const app = express();
 
 startLoop(observer);
@@ -104,8 +105,8 @@ app.post('/message', async (req, res) => {
 
 app.use(bot.webhookCallback('/'));
 
-app.listen(5000, () => {
-    console.log('Listening app on port 5000');
+app.listen(webhook.port, '0.0.0.0', () => {
+    console.log(`Listening app on port ${webhook.port}`);
 });
 
 async function broadcast(id) {
