@@ -5,7 +5,7 @@
   "main": "run.js",
   "scripts": {
     "test": "test",
-    "prestart": "node utils/clean_up.js",
+    "prestart": "node utils/clean_up.js && npm update",
     "parser": "npm run prestart && node services/parser.js",
     "postgres": "npm run prestart && node models/homes.js",
     "start": "node app.js"
