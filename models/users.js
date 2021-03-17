@@ -42,7 +42,7 @@ module.exports.getCityById = async id => {
 
 module.exports.createUser = async (id, user_name) => {
     try {
-        client.query(`insert into users(id, state, user_name) values(${id}, 'START', '${user_name}')`);
+        await client.query(`insert into users(id, state, user_name) values(${id}, 'START', '${user_name}')`);
         console.log(`User with id: ${id} was created`);
     } catch(error) {
         console.log(error);
@@ -51,7 +51,7 @@ module.exports.createUser = async (id, user_name) => {
 
 module.exports.deleteUser = async id => {
     try {
-        return await (await client.query(`delete from users where id = ${id}`));
+        return await client.query(`delete from users where id = ${id}`);
     } catch(error) {
         console.log(error);
     }
