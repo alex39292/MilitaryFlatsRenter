@@ -13,6 +13,7 @@ const express = require('express');
 const es6Renderer = require('express-es6-template-engine');
 const app = express();
 
+console.log('Test console');
 startLoop(observer);
 
 bot.start(async ctx => {
@@ -69,7 +70,7 @@ bot.action('Unsubscribe', async ctx => {
     await ctx.reply('Вы отписались');
 });
 
-//bot.telegram.setWebhook(configs.webhook.domain);
+bot.telegram.setWebhook(configs.webhook.domain);
 
 app.engine('html', es6Renderer);
 app.set('views', './pages');
@@ -104,7 +105,7 @@ app.post('/message', async (req, res) => {
     }
 });
 
-//app.use(bot.webhookCallback('/'));
+app.use(bot.webhookCallback('/'));
 
 app.listen(5000, () => {
     logger.info('Listening app on port 5000');
