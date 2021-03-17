@@ -87,7 +87,7 @@ app.get('/', (req, res) => {
 
 app.get('/users', async (req, res) => {
     const users = await getUsers();
-    res.send(users);
+    res.render('users', {locals: {jsob: users}});
 });
 
 app.get('/homes', async (req, res) => {
