@@ -1,6 +1,6 @@
 module.exports = {
     webhook: {
-        domain:'https://militaryflats.herokuapp.com/',
-        port: process.env.port || 5000
+        domain: process.env.webhook,
+        port: process.env.port
     }
 }
