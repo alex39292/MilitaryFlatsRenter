@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "Telegram bot for mil.by",
   "main": "app.js",
-
-  "repository" : { 
-    "type" : "git",
-    "url" : "https://github.com/alex39292/FlatsStatisticBot"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alex39292/FlatsStatisticBot"
   },
   "scripts": {
     "prestart": "npm install",

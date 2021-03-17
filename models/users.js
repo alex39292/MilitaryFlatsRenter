@@ -43,7 +43,7 @@ module.exports.getCityById = async id => {
 module.exports.createUser = async (id, user_name) => {
     try {
         client.query(`insert into users(id, state, user_name) values(${id}, 'START', '${user_name}')`);
-        logger.info(`User with id: ${id} was created`);
+        console.log(`User with id: ${id} was created`);
     } catch(error) {
         console.log(error);
     }

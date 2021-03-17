@@ -4,7 +4,7 @@ const { startLoop, findHome, getHomes } = require('./models/homes');
 const { createUser, changeState, setCity, getCityById, getUsers, getUsersId, deleteUser } = require('./models/users');
 const { Telegraf, Markup } = require('telegraf');
 const configs = require('./configs/bot');
-const bot = new Telegraf('1691534515:AAFJR6hh6POubgyzPCesttZ-b9CXpDfYEog');
+const bot = new Telegraf(process.env.TOKEN);
 const EventObserver = require('./services/observer');
 const observer = new EventObserver(broadcast);
 const express = require('express');
@@ -75,7 +75,7 @@ app.set('view engine', 'html');
 app.use(express.static(__dirname + '/pages'));
 app.use(express.urlencoded({extended: false}));
 
-app.get('/menu', (req, res) => {
+app.get('/', (req, res) => {
     res.render('index');
 });
 
