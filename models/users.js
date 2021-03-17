@@ -71,8 +71,11 @@ module.exports.changeState = async (id, state) => {
 
 module.exports.setCity = async (id, city) => {
     try {
-        client.query(`update users set city = '${city}' where id = ${id}`);
-        console.log(`City for user ${id} was updated to ${city}`);
+        const userCity = await (await client.query(`select city from users where id = ${id}`)).rows.pop().city;
+        if (userCity !== city) {
+            await client.query(`update users set city = '${city}' where id = ${id}`);
+            console.log(`City for user ${id} was updated to ${city}`);
+        }
     } catch(error) {
         console.log(error);
     }
