@@ -75,7 +75,7 @@ function makeMessage(result) {
     let message = '';
     if (result.length !== 0) {
     result.forEach(home => {
-message += `${emoji.generateNumberToSticker(result.indexOf(home) + 1)}. ${home.address}
+message += `${emoji.generateNumberToSticker(result.indexOf(home) + 1)} ${home.address}
 Комнат: ${home.flats}
 Этаж: ${home.floor}
 Площадь: ${home.area}
