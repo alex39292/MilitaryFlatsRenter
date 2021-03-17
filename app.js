@@ -33,7 +33,7 @@ bot.start(async ctx => {
 bot.on('message', async ctx => {
     const id = ctx.message.from.id;
     const city = ctx.message.text;
-    if (!/[^\.~`!#$%\^&*№+=\-\[\]\\';,/{}|\\":<>\?a-zA-Z0-9]/.test(city)) {
+    if (!/[^\.~`!#$%\^&*№+=\-\[\]\\';,/{}|\\":<>\?a-zA-Z0-9]/.test(city) && city.length > 2) {
         return ctx.reply(`Не верно введен город. Пример: Минск`);
     }
     console.log(`User [${id}] added city name ${city}`);
