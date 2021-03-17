@@ -2,17 +2,14 @@
   "name": "bot_js",
   "version": "1.0.0",
   "description": "Telegram bot for mil.by",
-  "main": "app.js",
+  
 
   "repository" : { 
     "type" : "git",
     "url" : "https://github.com/alex39292/FlatsStatisticBot"
   },
   "scripts": {
-    "test": "test",
     "prestart": "node utils/clean_up.js && npm install",
-    "parser": "npm run prestart && node services/parser.js",
-    "postgres": "npm run prestart && node models/homes.js",
     "start": "node app.js"
   },
   "keywords": [
