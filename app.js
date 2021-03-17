@@ -6,7 +6,7 @@ const { startLoop, findHome, getHomes } = require('./models/homes');
 const { createUser, changeState, setCity, getCityById, getUsers, getUsersId, deleteUser } = require('./models/users');
 const { Telegraf, Markup } = require('telegraf');
 const configs = require('./configs/bot');
-const bot = new Telegraf(process.env.TOKEN);
+const bot = new Telegraf('1691534515:AAFJR6hh6POubgyzPCesttZ-b9CXpDfYEog');
 const EventObserver = require('./services/observer');
 const observer = new EventObserver(broadcast);
 const express = require('express');
@@ -105,12 +105,10 @@ app.post('/message', async (req, res) => {
 });
 
 app.use(bot.webhookCallback('/'));
-require('https').createServer().listen(process.env.PORT || 5000).on('request', () => {
-    logger.info('Listening app on port 5000');
-});
+
 app.listen(5000, () => {
     logger.info('Listening app on port 5000');
-})
+});
 
 async function broadcast(id) {
     const city = await getCityById(id);
