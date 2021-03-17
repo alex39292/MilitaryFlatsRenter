@@ -1,5 +1,5 @@
 module.exports = {
-    url: 'https://www.mil.by/ru/housing/commerc/',
+    url: process.env.url,
     selectors: {
         id: 'div:nth-child(7) > table > tbody > tr:nth-child(n + 3) > td:nth-child(1) > p',
         address: 'div:nth-child(7) > table > tbody > tr:nth-child(n + 3) > td:nth-child(2) > p',
