@@ -63,8 +63,6 @@ module.exports.changeState = async (id, state) => {
         if (userState !== state) {
             await client.query(`update users set state = '${state}' where id = ${id}`);
             console.log(`State for user ${id} was updated to ${state}`);
-        } else {
-            console.log('User with tjisstaet');
         }
     } catch(error) {
         console.log(error);
