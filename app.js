@@ -105,7 +105,7 @@ app.post('/message', async (req, res) => {
 });
 
 app.use(bot.webhookCallback('/'));
-app.listen(configs.webhook.port || 5000, () => {
+app.listen(configs.webhook.port || 5000, configs.webhook.domain, () => {
     logger.info('Listening app on port 5000');
 });
 
