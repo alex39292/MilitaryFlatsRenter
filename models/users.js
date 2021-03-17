@@ -58,13 +58,12 @@ module.exports.deleteUser = async id => {
 }
 
 module.exports.changeState = async (id, state) => {
-    const userState = await client.query(`select state from users where id = ${id}`)
+    const userState = await (await client.query(`select state from users where id = ${id}`)).rows.pop().state
         .catch(error => console.log(error));
-    if (userState.state !== state) {
+    if (userState !== state) {
         await client.query(`update users set state = '${state}' where id = ${id}`)
             .catch(error => console.log(error))
-            .finally(console.log(`State for user ${id} was updated to ${state}`));
-        //console.log();
+        console.log(`State for user ${id} was updated to ${state}`)
     }
 }
 
