@@ -102,9 +102,9 @@ app.get('/message', async (req, res) => {
 app.post('/message', async (req, res) => {
     const result = await sendMessage(req.body.text);
     if (result) {
-        res.send('Отправлено');
+        res.render('reqMessage', {result: 'Отправлено'});
     } else {
-        res.send('Нет пользователей');
+        res.render('reqMessage', {result: 'Не пользователей'});
     }
 });
 
