@@ -9,7 +9,7 @@
     "url" : "https://github.com/alex39292/FlatsStatisticBot"
   },
   "scripts": {
-    "prestart": "node utils/clean_up.js && npm install",
+    "prestart": "npm install",
     "start": "node app.js"
   },
   "keywords": [
