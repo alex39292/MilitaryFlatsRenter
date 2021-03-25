@@ -9,7 +9,6 @@ module.exports.getData = async () => {
     const response = await getDOM();
     const $ = cheerio.load(response.data);
     const fromResponse = {
-        'id': getElementsBy(parser.selectors.id),
         'address': getElementsBy(parser.selectors.address),
         'floor': getElementsBy(parser.selectors.floor),
         'flats': getElementsBy(parser.selectors.flats),
@@ -17,11 +16,12 @@ module.exports.getData = async () => {
         'deadLine': getElementsBy(parser.selectors.deadLine),
         'notes': getElementsBy(parser.selectors.other),
     };
-    console.log(`Got ${fromResponse.id.length} homes from response`);
+    console.log(`Got ${fromResponse.address.length} homes from response`);
     
-    while (fromResponse.id.length !== 0) {
+    while (fromResponse.address.length !== 0) {
+        let id = 1;
         homes.push({
-            'id': fromResponse.id.shift(),
+            'id': id++,
             'address': fromResponse.address.shift(),
             'floor': fromResponse.floor.shift(),
             'flats': fromResponse.flats.shift(),
@@ -35,7 +35,6 @@ module.exports.getData = async () => {
         return $(selector).toArray().map(elem => $(elem).text().trim());
     }
 
-    homes.forEach(home => console.log(home.id));
     return homes;
 }
 
