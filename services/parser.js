@@ -35,7 +35,7 @@ module.exports.getData = async () => {
         return $(selector).toArray().map(elem => $(elem).text().trim());
     }
 
-    homes.forEach(home => console.log(home.id)):
+    homes.forEach(home => console.log(home.id));
     return homes;
 }
 
