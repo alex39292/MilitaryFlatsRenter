@@ -17,9 +17,9 @@ module.exports.getData = async () => {
         'notes': getElementsBy(parser.selectors.other),
     };
     console.log(`Got ${fromResponse.address.length} homes from response`);
+    
     let id = 1; 
     while (fromResponse.address.length !== 0) {
-        let id = 1;
         homes.push({
             'id': id++,
             'address': fromResponse.address.shift(),
