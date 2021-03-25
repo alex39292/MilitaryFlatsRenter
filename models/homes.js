@@ -64,7 +64,6 @@ module.exports.findHome = async address => {
         address = `.${address}`;
         const homes = await getHomes();
         const result = homes.filter(home => home.address.toUpperCase().includes(address.toUpperCase()));
-        console.log(`${result.length} homes sent`);
         return makeMessage(result);
     } catch (error) {
         console.log(error);
@@ -74,6 +73,7 @@ module.exports.findHome = async address => {
 function makeMessage(result) {
     let message = '';
     if (result.length !== 0) {
+    console.log(`${result.length} homes sent`);
     result.forEach(home => {
 message += `${emoji.generateNumberToSticker(result.indexOf(home) + 1)} ${home.address}
 Комнат: ${home.flats}
