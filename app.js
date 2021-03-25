@@ -118,7 +118,6 @@ async function broadcast(id) {
     const city = await getCityById(id);
     const message = await findHome(city);
         if (message !== '') {
-            logger.info(`BROADCAST is working for ${id}`);
             return bot.telegram.sendMessage(id,'⚡Обновление квартир по подписке⚡\n' + message,
             Markup.inlineKeyboard([
             Markup.button.callback('Отписаться от обновления', 'Unsubscribe')
