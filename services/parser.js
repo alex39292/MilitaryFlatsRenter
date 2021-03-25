@@ -35,7 +35,7 @@ module.exports.getData = async () => {
         return $(selector).toArray().map(elem => $(elem).text().trim());
     }
 
-    return homes;
+    return Array.from(new Set(homes));
 }
 
 async function getDOM() {
