@@ -25,7 +25,7 @@ module.exports.startLoop = async observer => {
             } else {
                 console.log('Data is the same');
             }
-        }, 60000);
+        }, 600000);
     } catch (error) {
         console.log(error);
     }
