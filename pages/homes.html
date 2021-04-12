@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/style.css" type="text/css">
+    <link rel="stylesheet" href="styles/table_style.css" type="text/css">
+    <title>Telegram Bot | Homes</title>
+  </head>
+  <body>
+    <div class="two"><h1>Telegram Bot для поиска квартир с сайта mil.by</h1></div>
+    <div class="homesLength">
+        <h1>Всего квартир: ${homes.length}</h1>
+    </div>
+    <table id="homes">
+        <tr>
+         <th>ID</th>
+         <th>Address</th>
+         <th>Floor</th>
+         <th>Flats</th>
+         <th>Area</th>
+         <th>Deadline</th>
+         <th>Notes</th>
+        </tr>
+        ${homes.map(home => `
+            <tr>
+                <td>${home.id}</td>
+                <td>${home.address}</td>
+                <td>${home.floor}</td>
+                <td>${home.flats}</td>
+                <td>${home.area}</td>
+                <td>${home.deadline}</td>
+                <td>${home.notes}</td>
+            </tr>`
+            ).join('')}
+      </table>
+  </body>
+</html>

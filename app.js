@@ -92,7 +92,7 @@ app.get('/users', async (req, res) => {
 
 app.get('/homes', async (req, res) => {
     const homes = await getHomes();
-    res.send(homes);
+    res.render('homes', {locals: {homes: homes}});
 });
 
 app.get('/message', async (req, res) => {
