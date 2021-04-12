@@ -18,14 +18,15 @@
          <th>State</th>
          <th>City</th>
         </tr>
-         ${users.forEach(user => 
+         ${for(user of ${users}) {
             return `<tr>
                 <th>${user.id}</th>
                 <th>${user.user_name}</th>
                 <th>${user.state}</th>
                 <th>${user.city}</th>
              </tr>`
-         )}
+            }
+         }
       </table>
   </body>
 </html>
