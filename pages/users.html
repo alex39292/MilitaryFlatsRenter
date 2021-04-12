@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/style.css" type="text/css">
+    <title>Telegram Bot | Users</title>
+  </head>
+  <body>
+    <div class="two"><h1>Telegram Bot для поиска квартир с сайта mil.by</h1></div>
+    <div class="usersLength">
+        <h1>Всего поьзователей: ${users.length}</h1>
+    </div>
+    <table class="users">
+        <tr>
+         <th>ID</th>
+         <th>User name</th>
+         <th>State</th>
+         <th>City</th>
+        </tr>
+         ${users.forEach(user => {
+             `<tr>
+                <th>${user.id}</th>
+                <th>${user.user_name}</th>
+                <th>${user.state}</th>
+                <th>${user.city}</th>
+             </tr>`
+         })}
+      </table>
+  </body>
+</html>
