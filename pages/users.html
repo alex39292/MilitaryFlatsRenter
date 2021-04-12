@@ -9,7 +9,7 @@
   <body>
     <div class="two"><h1>Telegram Bot для поиска квартир с сайта mil.by</h1></div>
     <div class="usersLength">
-        <h1>Всего поьзователей: ${users.length}</h1>
+        <h1>Всего пользователей: ${users.length}</h1>
     </div>
     <table class="users">
         <tr>
@@ -18,6 +18,14 @@
          <th>State</th>
          <th>City</th>
         </tr>
+        ${users.map(user => `
+            <tr>
+                <th>${user.id}</th>
+                <th>${user.user_name</th>
+                <th>${user.state</th>
+                <th>${user.city</th>
+            </tr>`
+            ).join('')}
       </table>
   </body>
 </html>
