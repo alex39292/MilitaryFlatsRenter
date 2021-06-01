@@ -88,15 +88,12 @@ app.route('/')
         res.render('index');
     })
     .post((req, res) => {
-        console.log(req.body);
         if (req.body.password) {
-            bcrypt.hash(req.body.password, 10, function(err, hash) {
-                console.log('From web ' + hash);
+            bcrypt.compare(req.body.password, process.env.PASSWORD, (err, result) => {
+                if (result) {
+                    res.render('home');
+                }
             });
-            bcrypt.hash(process.env.PASSWORD, 10, function(err, hash) {
-                console.log('From local ' + hash);
-            });
-            res.render('home');
         } else {
             res.render('index');
         }
