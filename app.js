@@ -86,18 +86,17 @@ app.route('/')
     .get((req, res) => {
     res.render('index');
     })
-    .post((req, res) => {
+    .post((req, res, next) => {
     console.log(req.body);
     if (req.body.password === process.env.PASSWORD) {
         res.render('home');
+        return next();
     } else {
         res.render('index');
     }
-    req.body.forEach(elem => {
-        if (elem === 'buttonUsers') {
-            res.render('users');
-        }
-    })
+    if (req.body.buttonUsers) {
+        res.render('users', {locals: {users: users}});
+    }
     });
 
 app.get('/users', async (req, res) => {
