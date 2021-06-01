@@ -95,7 +95,7 @@ app.route('/')
         res.render('index');
     }
     if (req.body.buttonUsers) {
-        res.render('users');
+        res.render('users', {locals: {users: users}});
     }
 });
 
