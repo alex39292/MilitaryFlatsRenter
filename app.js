@@ -85,14 +85,7 @@ app.get('/', (req, res) => {
     res.render('login');
 });
 
-app.post('/', (req, res) => {
-    const password = req.body.text;
-    if (password === process.env.PASSWORD) {
-        res.render('index');
-    } else {
-        res.render('login');
-    }
-});
+
 
 app.get('/users', async (req, res) => {
     const users = await getUsers();
