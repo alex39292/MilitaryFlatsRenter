@@ -92,15 +92,13 @@ app.route('/')
     if (password === process.env.PASSWORD) {
         res.render('home');
         next();
-    } else {
-        res.render('index');
-    }
-    })
-    .post((req, res) => {
         if (req.body.buttonUsers) {
             res.render('users', {locals: {users: users}});
         }
-    })
+    } else {
+        res.render('index');
+    }
+    });
 
 app.get('/users', async (req, res) => {
     const users = await getUsers();
