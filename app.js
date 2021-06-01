@@ -92,8 +92,7 @@ app.route('/')
             bcrypt.compare(req.body.password, process.env.PASSWORD, (err, result) => {
                 if (result) {
                     res.render('home');
-                }
-                if (err) {
+                } else  {
                     res.render('index');
                 }
             });
