@@ -113,7 +113,7 @@ app.route('/message')
     .get((req, res) => {
     res.render('message');
     })
-    .post((req, res) => {
+    .post(async (req, res) => {
     const result = await sendMessage(req.body.text);
     if (result) {
         res.render('reqMessage', {locals: {result: 'Отправлено'}});
