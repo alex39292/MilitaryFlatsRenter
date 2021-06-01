@@ -81,11 +81,18 @@ app.set('view engine', 'html');
 app.use(express.static(__dirname + '/pages'));
 app.use(express.urlencoded({extended: false}));
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     res.render('login');
 });
 
-
+app.post('/', async (req, res) => {
+    const password = req.body.text;
+    if (password === process.env.PASSWORD) {
+        res.render('index');
+    } else {
+        res.render('login');
+    }
+});
 
 app.get('/users', async (req, res) => {
     const users = await getUsers();
