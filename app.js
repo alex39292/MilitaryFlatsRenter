@@ -81,12 +81,13 @@ app.set('view engine', 'html');
 app.use(express.static(__dirname + '/pages'));
 app.use(express.urlencoded({extended: false}));
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
     res.render('index');
 });
 
-app.post('/', async (req, res) => {
+app.post('/', (req, res) => {
     const password = req.body.text;
+    console.log('Password is ' + password)
     if (password === process.env.PASSWORD) {
         res.render('home');
     } else {
