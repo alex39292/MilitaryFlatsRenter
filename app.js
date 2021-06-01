@@ -82,11 +82,11 @@ app.use(express.json());
 app.use(express.static(__dirname + '/pages'));
 app.use(express.urlencoded({extended: false}));
 
-app.route('/')
-    .get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.render('index');
-    })
-    .post('/', (req, res) => {
+});
+
+app.post('/', (req, res) => {
     const password = req.body.password;
     console.log(req.body);
     if (password === process.env.PASSWORD) {
@@ -97,7 +97,7 @@ app.route('/')
     if (req.body.buttonUsers) {
         res.render('users');
     }
-    });
+});
 
 app.get('/users', async (req, res) => {
     const users = await getUsers();
@@ -109,18 +109,18 @@ app.get('/homes', async (req, res) => {
     res.render('homes', {locals: {homes: homes}});
 });
 
-app.route('/message')
-    .get('/message', async (req, res) => {
+app.get('/message', async (req, res) => {
     res.render('message');
-    })
-    .post('/message', async (req, res) => {
+});
+
+app.post('/message', async (req, res) => {
     const result = await sendMessage(req.body.text);
     if (result) {
         res.render('reqMessage', {locals: {result: 'Отправлено'}});
     } else {
         res.render('reqMessage', {locals: {result: 'Нет пользователей'}});
     }
-    });
+});
 
 app.use(bot.webhookCallback('/'));
 
