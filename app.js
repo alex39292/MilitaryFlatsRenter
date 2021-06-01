@@ -78,14 +78,15 @@ bot.telegram.setWebhook(configs.webhook.domain);
 app.engine('html', es6Renderer);
 app.set('views', './pages');
 app.set('view engine', 'html');
+app.use(express.json());
 app.use(express.static(__dirname + '/pages'));
 app.use(express.urlencoded({extended: false}));
 
-app.get('/', (req, res) => {
+app.route('/')
+    .get('/', (req, res) => {
     res.render('index');
-});
-
-app.post('/', (req, res) => {
+    })
+    .post('/', (req, res) => {
     const password = req.body.password;
     console.log(req.body);
     if (password === process.env.PASSWORD) {
@@ -96,7 +97,7 @@ app.post('/', (req, res) => {
     if (req.body.buttonUsers) {
         res.render('users');
     }
-});
+    });
 
 app.get('/users', async (req, res) => {
     const users = await getUsers();
@@ -108,18 +109,18 @@ app.get('/homes', async (req, res) => {
     res.render('homes', {locals: {homes: homes}});
 });
 
-app.get('/message', async (req, res) => {
+app.route('/message')
+    .get('/message', async (req, res) => {
     res.render('message');
-});
-
-app.post('/message', async (req, res) => {
+    })
+    .post('/message', async (req, res) => {
     const result = await sendMessage(req.body.text);
     if (result) {
         res.render('reqMessage', {locals: {result: 'Отправлено'}});
     } else {
         res.render('reqMessage', {locals: {result: 'Нет пользователей'}});
     }
-});
+    });
 
 app.use(bot.webhookCallback('/'));
 
