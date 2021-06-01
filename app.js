@@ -87,6 +87,7 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     const password = req.body.password;
+    console.log(req.body);
     if (password === process.env.PASSWORD) {
         res.render('home');
     } else {
