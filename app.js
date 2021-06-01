@@ -86,7 +86,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    const password = req.body.text;
+    const password = req.body.login;
     console.log('Password is ' + password)
     if (password === process.env.PASSWORD) {
         res.render('home');
