@@ -93,6 +93,9 @@ app.post('/', (req, res) => {
     } else {
         res.render('index');
     }
+    if (req.body.buttonUsers) {
+        res.render('users');
+    }
 });
 
 app.get('/users', async (req, res) => {

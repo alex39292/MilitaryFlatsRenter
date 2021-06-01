@@ -3,7 +3,13 @@ const buttonHomes = document.getElementById('homes');
 const buttonMessage = document.getElementById('message');
 
 buttonUsers.addEventListener('click', function(e) {
-    fetch('/', {method: 'POST'});
+    fetch('/', {
+        method: 'POST',
+        body: JSON.stringify({ buttonUsers: true }),
+        headers: {
+            'Content-Type': 'application/json'
+          }
+    });
 });
 
 buttonHomes.addEventListener('click', function(e) {
