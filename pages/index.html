@@ -3,13 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles/style.css" type="text/css">
-    <title>Telegram Bot</title>
+    <link rel="stylesheet" href="styles/index.css" type="text/css">
+    <title>Telegram Bot Login Page</title>
   </head>
   <body>
-    <div class="two"><h1>Telegram Bot для поиска квартир с сайта mil.by</h1></div>
-    <a href='/users' class="button10">Пользователи</a><br>
-    <a href='/homes' class="button10">Квартиры</a><br>
-    <a href='/message' class="button10">Отправить сообщение</a>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <h2 class="active"> Sign In </h2>
+            <form method="POST">
+                <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+                <input type="submit" class="fadeIn fourth" value="Log In">
+            </form>
+        </div>
+    </div>
   </body>
 </html>
