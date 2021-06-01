@@ -10,6 +10,7 @@ const observer = new EventObserver(broadcast);
 const express = require('express');
 const es6Renderer = require('express-es6-template-engine');
 const { webhook } = require('./configs/bot');
+const bcrypt = require('bcrypt');
 const app = express();
 
 startLoop(observer);
@@ -88,7 +89,13 @@ app.route('/')
     })
     .post((req, res) => {
         console.log(req.body);
-        if (req.body.password === process.env.PASSWORD) {
+        if (req.body.password) {
+            bcrypt.hash(req.body.password, 10, function(err, hash) {
+                console.log('From web ' + hash);
+            });
+            bcrypt.hash(process.env.PASSWORD, 10, function(err, hash) {
+                console.log('From local ' + hash);
+            });
             res.render('home');
         } else {
             res.render('index');
