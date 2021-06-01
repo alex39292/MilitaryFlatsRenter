@@ -95,10 +95,12 @@ app.route('/')
     } else {
         res.render('index');
     }
-    if (req.body.buttonUsers) {
-        res.render('users', {locals: {users: users}});
-    }
-});
+    })
+    .post((req, res) => {
+        if (req.body.buttonUsers) {
+            res.render('users', {locals: {users: users}});
+        }
+    })
 
 app.get('/users', async (req, res) => {
     const users = await getUsers();
