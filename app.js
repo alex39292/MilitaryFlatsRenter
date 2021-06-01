@@ -86,12 +86,11 @@ app.route('/')
     .get((req, res) => {
     res.render('index');
     })
-    .post((req, res, next) => {
+    .post((req, res) => {
     const password = req.body.password;
     console.log(req.body);
     if (password === process.env.PASSWORD) {
         res.render('home');
-        next();
         if (req.body.buttonUsers) {
             res.render('users', {locals: {users: users}});
         }
