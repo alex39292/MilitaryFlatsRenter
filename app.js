@@ -86,17 +86,6 @@ app.use(express.urlencoded({extended: false}));
 app.route('/')
     .get((req, res) => {
         res.render('index');
-    })
-    .post((req, res) => {
-        if (req.body.password) {
-            bcrypt.compare(req.body.password, process.env.PASSWORD, (err, result) => {
-                if (result) {
-                    res.render('home');
-                } else  {
-                    res.render('index');
-                }
-            });
-        }
     });
 
 app.get('/users', async (req, res) => {
