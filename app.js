@@ -10,7 +10,6 @@ const observer = new EventObserver(broadcast);
 const express = require('express');
 const es6Renderer = require('express-es6-template-engine');
 const { webhook } = require('./configs/bot');
-const bcrypt = require('bcrypt');
 const app = express();
 
 startLoop(observer);
@@ -81,7 +80,7 @@ app.set('views', './pages');
 app.set('view engine', 'html');
 app.use(express.json());
 app.use(express.static(__dirname + '/pages'));
-//app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: false}));
 
 app.get('/', async (req, res) => {
         res.render('home');
@@ -97,9 +96,10 @@ app.get('/homes', async (req, res) => {
     res.render('homes', {locals: {homes: homes}});
 });
 
-app.get('/message', (req, res) => {
+app.get('/message', async (req, res) => {
         res.render('message');
     });
+
 app.post('/message', async (req, res) => {
         const result = await sendMessage(req.body.text);
         if (result) {
