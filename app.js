@@ -85,7 +85,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.route('/')
     .get((req, res) => {
-        res.render('index');
+        res.render('home');
     });
 
 app.get('/users', async (req, res) => {
