@@ -78,7 +78,6 @@ bot.telegram.setWebhook(configs.webhook.domain);
 app.engine('html', es6Renderer);
 app.set('views', './pages');
 app.set('view engine', 'html');
-app.use(express.json());
 app.use(express.static(__dirname + '/pages'));
 app.use(express.urlencoded({extended: false}));
 
