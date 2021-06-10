@@ -97,11 +97,10 @@ app.get('/homes', async (req, res) => {
     res.render('homes', {locals: {homes: homes}});
 });
 
-app.route('/message')
-    .get((req, res) => {
+app.get('/message', (req, res) => {
         res.render('message');
-    })
-    .post(async (req, res) => {
+    });
+app.post('/message', async (req, res) => {
         const result = await sendMessage(req.body.text);
         if (result) {
             res.render('reqMessage', {locals: {result: 'Отправлено'}});
