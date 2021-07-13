@@ -81,9 +81,9 @@ app.set('view engine', 'html');
 app.use(express.static(__dirname + '/pages'));
 app.use(express.urlencoded({extended: false}));
 
-//app.get('/', async (req, res) => {
-//        res.render('home');
-//    });
+app.get('/', async (req, res) => {
+        res.render('home');
+    });
 
 app.get('/users', async (req, res) => {
     const users = await getUsers();
@@ -108,7 +108,7 @@ app.post('/message', async (req, res) => {
         }
     });
 
-//app.use(bot.webhookCallback('/'));
+app.use(bot.webhookCallback('/'));
 
 app.listen(webhook.port, '0.0.0.0', () => {
     console.log(`Listening app on port ${webhook.port}`);
