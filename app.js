@@ -81,7 +81,7 @@ app.set('view engine', 'html');
 app.use(express.static(__dirname + '/pages'));
 app.use(express.urlencoded({extended: false}));
 
-//app.get('/', async (req, res) => {
+app.get('/', async (req, res) => {
         res.render('home');
     });
 
