@@ -15,6 +15,7 @@ const app = express();
 startLoop(observer);
 
 bot.start(async ctx => {
+    console.log('Get start msg');
     const user = ctx.message.from;
     console.log(`User [${user.id}] started bot`);
     await createUser(user.id, user.username);
@@ -75,11 +76,11 @@ bot.action('Unsubscribe', async ctx => {
 
 bot.telegram.setWebhook(configs.webhook.domain);
 
-//app.engine('html', es6Renderer);
-//app.set('views', './pages');
-//app.set('view engine', 'html');
-//app.use(express.static(__dirname + '/pages'));
-//app.use(express.urlencoded({extended: false}));
+app.engine('html', es6Renderer);
+app.set('views', './pages');
+app.set('view engine', 'html');
+app.use(express.static(__dirname + '/pages'));
+app.use(express.urlencoded({extended: false}));
 
 app.get('/', async (req, res) => {
         res.render('home');
