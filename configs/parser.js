@@ -1,7 +1,7 @@
 module.exports = {
     url: process.env.url,
     selectors: {
-        address: 'table:nth-child(1) > tbody > tr:nth-child(n + 3) > td:nth-child(2) > p:nth-child(1)',
+        address: 'table:nth-child(1) > tbody > tr:nth-child(n + 3) > td:nth-child(2)',
         floor: 'table:nth-child(1) > tbody > tr:nth-child(n + 3) > td:nth-child(3) > p',
         flats: 'table:nth-child(1) > tbody > tr:nth-child(n + 3) > td:nth-child(4) > p',
         area: 'table:nth-child(1) > tbody > tr:nth-child(n + 3) > td:nth-child(5) > p',
