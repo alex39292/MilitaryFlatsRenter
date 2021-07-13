@@ -74,8 +74,7 @@ bot.action('Unsubscribe', async ctx => {
     await ctx.reply('Вы отписались');
 });
 
-//bot.telegram.setWebhook(configs.webhook.domain);
-bot.startWebhook('/');
+bot.telegram.setWebhook(configs.webhook.domain);
 
 app.engine('html', es6Renderer);
 app.set('views', './pages');
