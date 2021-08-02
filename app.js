@@ -74,7 +74,7 @@ bot.action('Unsubscribe', async ctx => {
     await ctx.reply('Вы отписались');
 });
 
-bot.telegram.setWebhook(configs.webhook.domain);
+bot.telegram.setWebhook('https://militaryflats.herokuapp.com/');
 
 app.engine('html', es6Renderer);
 app.set('views', './pages');
