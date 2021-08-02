@@ -76,44 +76,44 @@ bot.action('Unsubscribe', async ctx => {
 
 bot.telegram.setWebhook(configs.webhook.domain);
 
-app.engine('html', es6Renderer);
-app.set('views', './pages');
-app.set('view engine', 'html');
-app.use(express.static(__dirname + '/pages'));
-app.use(express.urlencoded({extended: false}));
-
-app.get('/', async (req, res) => {
-        res.render('home');
-    });
-
-app.get('/users', async (req, res) => {
-    const users = await getUsers();
-    res.render('users', {locals: {users: users}});
-});
-
-app.get('/homes', async (req, res) => {
-    const homes = await getHomes();
-    res.render('homes', {locals: {homes: homes}});
-});
-
-app.get('/message', async (req, res) => {
-        res.render('message');
-    });
-
-app.post('/message', async (req, res) => {
-        const result = await sendMessage(req.body.text);
-        if (result) {
-            res.render('reqMessage', {locals: {result: 'Отправлено'}});
-        } else {
-            res.render('reqMessage', {locals: {result: 'Нет пользователей'}});
-        }
-    });
-
-app.use(bot.webhookCallback('/'));
-
-app.listen(webhook.port, '0.0.0.0', () => {
-    console.log(`Listening app on port ${webhook.port}`);
-});
+//app.engine('html', es6Renderer);
+//app.set('views', './pages');
+//app.set('view engine', 'html');
+//app.use(express.static(__dirname + '/pages'));
+//app.use(express.urlencoded({extended: false}));
+//
+//app.get('/', async (req, res) => {
+//        res.render('home');
+//    });
+//
+//app.get('/users', async (req, res) => {
+//    const users = await getUsers();
+//    res.render('users', {locals: {users: users}});
+//});
+//
+//app.get('/homes', async (req, res) => {
+//    const homes = await getHomes();
+//    res.render('homes', {locals: {homes: homes}});
+//});
+//
+//app.get('/message', async (req, res) => {
+//        res.render('message');
+//    });
+//
+//app.post('/message', async (req, res) => {
+//        const result = await sendMessage(req.body.text);
+//        if (result) {
+//            res.render('reqMessage', {locals: {result: 'Отправлено'}});
+//        } else {
+//            res.render('reqMessage', {locals: {result: 'Нет пользователей'}});
+//        }
+//    });
+//
+//app.use(bot.webhookCallback('/'));
+//
+//app.listen(webhook.port, '0.0.0.0', () => {
+//    console.log(`Listening app on port ${webhook.port}`);
+//});
 
 async function broadcast(id) {
     const city = await getCityById(id);
