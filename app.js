@@ -111,7 +111,7 @@ app.post('/message', async (req, res) => {
 
 app.use(bot.webhookCallback('/'));
 
-app.listen(webhook.port, '0.0.0.0', () => {
+app.listen(webhook.port, () => {
     console.log(`Listening app on port ${webhook.port}`);
 });
 
