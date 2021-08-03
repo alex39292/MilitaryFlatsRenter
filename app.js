@@ -56,7 +56,7 @@ bot.on('message', async ctx => {
         ]));
     }
     else {
-    const messages = [message.substring(0,4096),message.substring(4097,message.length)];
+    const messages = [message.substring(0,4096),message.substring(4096,message.length)];
     messages.forEach(msg => ctx.reply(msg));
     return ctx.reply('Подписаться на обновление?',
         Markup.inlineKeyboard([
