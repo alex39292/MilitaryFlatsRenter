@@ -58,12 +58,12 @@ bot.on('message', async ctx => {
     else {
     const messages = [message.substring(0,4096),message(4097,message.length)];
     messages.forEach(message => {
-      ctx.reply(message));
+      ctx.reply(message);
       ctx.reply('Подписаться на обновление?',
         Markup.inlineKeyboard([
             Markup.button.callback('🔔Подписаться', 'Subscribe')
         ]));
-      }
+      });
     }
 });
 
