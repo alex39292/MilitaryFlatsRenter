@@ -75,6 +75,7 @@ bot.action('Unsubscribe', async ctx => {
 });
 
 bot.telegram.setWebhook(webhook.domain);
+bot.startWebhook('/',null,5000);
 bot.launch();
 
 app.engine('html', es6Renderer);
