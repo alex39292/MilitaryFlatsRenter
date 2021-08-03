@@ -42,19 +42,22 @@ bot.on('message', async ctx => {
     observer.unsubscribe(id);
     await setCity(id, city);
     const message = await findHome(city);
-    if (message === '' || message.length > 4096) {
-        console.log('Length of msg is ',message.length);
+    if (message === '') {
         await ctx.reply(`Нет квартир в г.${city}`);
         return ctx.reply('Подписаться на обновление?',
             Markup.inlineKeyboard([
                 Markup.button.callback('🔔Подписаться', 'Subscribe')
         ]));
-    } else {
+    } else if(message.length < 4096) {
     await ctx.reply(message);
     return ctx.reply('Подписаться на обновление?',
         Markup.inlineKeyboard([
             Markup.button.callback('🔔Подписаться', 'Subscribe')
         ]));
+    }
+    else {
+    const messages = [message.substring(0,4096),message(4097,message.length];
+    messages.forEach(message => ctx.reply(message));
     }
 });
 
