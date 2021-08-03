@@ -49,6 +49,7 @@ bot.on('message', async ctx => {
                 Markup.button.callback('🔔Подписаться', 'Subscribe')
         ]));
     } else {
+    console.log('Length of msg is ',message.length());
     await ctx.reply(message);
     return ctx.reply('Подписаться на обновление?',
         Markup.inlineKeyboard([
