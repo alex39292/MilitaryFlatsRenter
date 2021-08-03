@@ -42,14 +42,14 @@ bot.on('message', async ctx => {
     observer.unsubscribe(id);
     await setCity(id, city);
     const message = await findHome(city);
-    if (message === '') {
+    if (message === '' || message.length > 4096) {
+        console.log('Length of msg is ',message.length);
         await ctx.reply(`Нет квартир в г.${city}`);
         return ctx.reply('Подписаться на обновление?',
             Markup.inlineKeyboard([
                 Markup.button.callback('🔔Подписаться', 'Subscribe')
         ]));
     } else {
-    console.log('Length of msg is ',message.length);
     await ctx.reply(message);
     return ctx.reply('Подписаться на обновление?',
         Markup.inlineKeyboard([
