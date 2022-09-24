@@ -36,6 +36,8 @@ module.exports.getData = async () => {
         function getElementsBy(selector) {
             return $(selector).toArray().map(elem => $(elem).text().trim());
         }
+    } else {
+        console.log('Response is null');
     }
     console.log(homes);
     return homes;
