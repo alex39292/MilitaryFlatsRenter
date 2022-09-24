@@ -45,7 +45,10 @@ module.exports.getData = async () => {
 const getDOM = async () => {
     let response;
     try {
-        response = await axios(process.env.url);
+        response = await axios({
+            url: process.env.url,
+            timeout: 2000,
+        });
     } catch (error) {
         console.log(error);
         response = null;
