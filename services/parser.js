@@ -40,7 +40,7 @@ module.exports.getData = async () => {
     return homes;
 }
 
-const getDOM = () => {
+const getDOM = async () => {
     try {
         return await axios.get('https://www.mil.by/ru/housing/commerc/');
     } catch (error) {
