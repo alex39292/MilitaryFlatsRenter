@@ -5,6 +5,7 @@ const cheerio = require('cheerio');
 const parser = require('../configs/parser');
 
 module.exports.getData = async () => {
+    console.log('getData() works');
     const homes = [];
     const response = await getDOM();
     if (response !== null) {
