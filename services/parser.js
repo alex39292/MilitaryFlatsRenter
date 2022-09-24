@@ -45,7 +45,7 @@ module.exports.getData = async () => {
 const getDOM = async () => {
     let response;
     try {
-        response = await axios('https://www.mil.by/ru/housing/commerc/');
+        response = await axios(process.env.url);
     } catch (error) {
         console.log(error);
         response = null;
