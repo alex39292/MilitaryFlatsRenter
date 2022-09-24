@@ -2,12 +2,12 @@
 
 const axios = require('axios');
 const cheerio = require('cheerio');
+const { response } = require('express');
 const parser = require('../configs/parser');
 
 module.exports.getData = async () => {
     const homes = [];
     const response = await getDOM();
-    console.log(response);
     if (response !== undefined) {
         const $ = cheerio.load(response.data);
         const fromResponse = {
@@ -41,11 +41,13 @@ module.exports.getData = async () => {
     return homes;
 }
 
-const getDOM = () => {
+const getDOM = async () => {
+    let response;
     try {
-        return axios('https://www.mil.by/ru/housing/commerc/');
+        response = await axios('https://www.mil.by/ru/housing/commerc/');
     } catch (error) {
         console.log(error);
-        return null;
+        response = null;
     }
+    return response;
 }
