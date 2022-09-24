@@ -21,6 +21,7 @@ module.exports.startLoop = async observer => {
         if (homes.join('') !== currentHomes.join('')) {
             await setHomes(currentHomes);
             observer.broadcast();
+            console.log('New homes!');
         } else {
             console.log('Data is the same');
         }
