@@ -8,7 +8,7 @@ const parser = require('../configs/parser');
 module.exports.getData = async () => {
     const homes = [];
     const response = await getDOM();
-    if (response !== undefined) {
+    if (response.hasOwnProperty('data')) {
         const $ = cheerio.load(response.data);
         const fromResponse = {
             'address': getElementsBy(parser.selectors.address),
