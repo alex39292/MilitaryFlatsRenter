@@ -7,7 +7,8 @@ const parser = require('../configs/parser');
 module.exports.getData = async () => {
     const homes = [];
     const response = await getDOM();
-    if (response !== null) {
+    console.log(response);
+    if (response !== undefined) {
         const $ = cheerio.load(response.data);
         const fromResponse = {
             'address': getElementsBy(parser.selectors.address),
@@ -40,9 +41,9 @@ module.exports.getData = async () => {
     return homes;
 }
 
-const getDOM = async () => {
+const getDOM = () => {
     try {
-        return await axios.get('https://www.mil.by/ru/housing/commerc/');
+        return axios('https://www.mil.by/ru/housing/commerc/');
     } catch (error) {
         console.log(error);
         return null;
