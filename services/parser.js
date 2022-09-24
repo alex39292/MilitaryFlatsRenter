@@ -42,7 +42,7 @@ module.exports.getData = async () => {
 
 const getDOM = () => {
     try {
-        return axios('https://www.mil.by/ru/housing/commerc/');
+        return axios.get('https://www.mil.by/ru/housing/commerc/');
     } catch (error) {
         console.log(error);
         return null;
