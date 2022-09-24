@@ -1,6 +1,6 @@
 'use strict';
 
-const axios = require('axios');
+const axios = require('axios').default;
 const cheerio = require('cheerio');
 const parser = require('../configs/parser');
 
@@ -45,10 +45,7 @@ module.exports.getData = async () => {
 const getDOM = async () => {
     let response;
     try {
-        response = await axios({
-            url: process.env.url,
-            timeout: 2000,
-        });
+        response = await axios(process.env.url);
     } catch (error) {
         console.log(error);
         response = null;
