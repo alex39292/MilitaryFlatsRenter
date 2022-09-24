@@ -14,6 +14,16 @@ module.exports.startLoop = async observer => {
         if (ids.length !== 0) {
             ids.forEach(id => observer.subscribe(id.id));
         }
+
+        console.log('Running loop...');
+        const currentHomes = await getData();
+        const homes = await getHomes();
+        if (homes.join('') !== currentHomes.join('')) {
+            await setHomes(currentHomes);
+            observer.broadcast();
+        } else {
+            console.log('Data is the same');
+        }
             
         await setInterval(async () => {
             console.log('Running loop...');
